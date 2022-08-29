@@ -6,7 +6,6 @@ import re
 with open("examplestory.txt") as story_file:
     # Tildel en tæller til variablerne så vi dynamisk kan tildele dem i while løkken.
     story_file = story_file.read()
-    print(story_file)
     variableCounter = 0
     charCounter = 0
     charCounterTotal = 0
