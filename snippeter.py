@@ -10,12 +10,14 @@ with open("examplestory.txt") as story_file:
     charCounter = 0
     charCounterTotal = 0
     snippetArray = {}
+
+    sentenceMatch = re.search("\w|\ ", txt)
     # Vi starter med at skippe alt hvad der ikke er alfanumerisk, for at undgå titelformatering mm
-    while story_file[charCounterTotal] != "\w":
+    while re.search("\w| ", story_file[charCounterTotal]):
         charCounterTotal += 1
     # Hovedløkke, denne danner en ny streng for hver "adskiller". Typisk et \n eller "
     # Så længe den totale mængde karakterer talt er under den totale mængde i tekst filen, fortsætter vi.
-    while charCounterTotal < len(story_file.read()):
+    while charCounterTotal <= len(story_file):
             # Derefter starter vi med at lede efter alfanumeriske
             if story_file[charCounterTotal] == "\D":
                 # Som vi så tilføjer til snippetArray
