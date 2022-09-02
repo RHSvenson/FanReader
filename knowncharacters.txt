@@ -1,0 +1,9 @@
+Generic{
+    Original Character
+    OC
+}
+My Little Pony: Friendship is Magic{
+    Princess Celestia
+    Celestia
+    Discord
+}
