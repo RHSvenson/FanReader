@@ -11,6 +11,7 @@ with open ("exampletags.txt") as tags:
     charTags = re.findall("(?<=Character=\")[\w\d\s]+(?=\")", tags)
     
     # Derefter skal vi have vores liste af snippets
+    
 
 
 
