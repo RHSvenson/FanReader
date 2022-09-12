@@ -24,7 +24,7 @@ with open("examplestory.txt") as story_file:
     print("Starter scanning...")
 
     # Så længe vi ikke har nogen alfanumerisk karakter, så springer vi bare over.
-    while re.search("\w|\")", story_file[charCounterTotal]) == None:
+    while re.search("\w|\"", story_file[charCounterTotal]) == None:
         charCounterTotal += 1
     # Hovedløkke, denne danner en ny streng for hver "adskiller". Typisk et \n eller "
     # Så længe den totale mængde karakterer talt er under den totale mængde i tekst filen, fortsætter vi.
