@@ -31,36 +31,39 @@ with open("examplestory.txt") as story_file:
     print("Startloop færdig.")
     while charCounterTotal < len(story_file)-1:
             # Derefter starter vi med at lede efter alfanumeriske
-            if re.search("\w|\ |\,|\.|\:|\;|'|\?|\!|-|—|\(|\)", story_file[charCounterTotal]) != None:
+            if re.search("\w|\"|\ |\,|\.|\:|\;|'|\?|\!|-|—|\(", story_file[charCounterTotal]) != None:
                 # Hver gang vi finder en alfanumerisk, tilføjer vi den til slutningen af vores midlertidige string.
                 stringCache += story_file[charCounterTotal]
 
                 # Og øger tælleren med en.
                 charCounterTotal += 1
             # Nye linjer og gåseøjne springes over.
-            elif re.search("\n|\r\\^M|\ ", story_file[charCounterTotal]) != None:
+            elif re.search("\n|\r\\^M|\.", story_file[charCounterTotal]) != None:
                 # Lav en intern overspringshandling indtil vi er tilbage til en alfanumerisk, ligesom i starten.
-                while re.search("\n|\r|\^M|\ ", story_file[charCounterTotal]) != None:
+                while re.search("\n|\r|\^M", story_file[charCounterTotal]) != None:
                     charCounterTotal += 1
 
                 # Lav dynamiske tuples og tilføj dem til den globale variabel liste
-                globals()[f"snippet{variableCounter}"] = (0,str(stringCache))
-                if stringCache != '' or stringCache != ' ':
-                    # Gør den midlertidige string permanent, og tilføj
-                    snippetDictionary.append([f"snippet{variableCounter}"])
-                    variableCounter += 1
+                if re.search("\".+\"", stringCache) != None:
+                    locals()[f"snippet{variableCounter}"] = (1,str(stringCache))
+                    
+                else:
+                    locals()[f"snippet{variableCounter}"] = (0,str(stringCache))
+                # Gør den midlertidige string permanent, og tilføj
+                snippetDictionary.append([f"snippet{variableCounter}"])
+                variableCounter += 1
                 stringCache = ""
-            elif re.search("\"", story_file[charCounterTotal]) != None:
-                # Spring selve gåseøjnene over, og overgå derefter til en ny variabel.
-                # Bemærk at den tidligere elif for nye linjers while loop betyder at gåseøjne efter \n overspringes
-                # så vi undgår for mange variableCounter switches.
-                charCounterTotal += 1
-                # Tildel værdi 1 for dialog snippet
-                globals()[f"snippet{variableCounter}"] = (1,str(stringCache))
-                if stringCache != '' or stringCache != ' ':
-                    snippetDictionary.append([f"snippet{variableCounter}"])
-                    variableCounter += 1
-                stringCache = ""
+            #elif re.search("\"", story_file[charCounterTotal]) != None:
+            #    # Spring selve gåseøjnene over, og overgå derefter til en ny variabel.
+            #    # Bemærk at den tidligere elif for nye linjers while loop betyder at gåseøjne efter \n overspringes
+            #    # så vi undgår for mange variableCounter switches.
+            #    charCounterTotal += 1
+            #    # Tildel værdi 1 for dialog snippet
+            #    globals()[f"snippet{variableCounter}"] = (1,str(stringCache))
+            #    if stringCache != '' or stringCache != ' ':
+            #        snippetDictionary.append([f"snippet{variableCounter}"])
+            #        variableCounter += 1
+            #    stringCache = ""
             else:
                 charCounterTotal += 1
                 print("Fejl, ukendt karakter:", story_file[charCounterTotal])
