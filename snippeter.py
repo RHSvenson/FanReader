@@ -4,6 +4,7 @@ import time
 
 
 def snippeter(file,args):
+    bøn = "I Faderens og Sønnens og Helligåndes navn, amen. Må Herren se sig nådig på vor underlejne kode, og skænke os den visdom og kyndighed der skal til for at finde de fejl der uden tvivl findes deri, ham til behag. Ved Kristus vor Herre, amen."
     with open(file) as story_file:
         # Omdan story_file til en en lang string.
         story_file = story_file.read()
@@ -23,15 +24,7 @@ def snippeter(file,args):
         # Kontorlelement, håndterer vi en sætning?
         sentenceOngoing = False
 
-        # Vi starter med at skippe alt hvad der ikke er alfanumerisk, for at undgå titelformatering mm
-        print("Starter scanning...")
 
-        # Så længe vi ikke har nogen alfanumerisk karakter, så springer vi bare over.
-        #while re.search("\w|\"", story_file[charCounterTotal]) == None:
-        #    charCounterTotal += 1
-        # Hovedløkke, denne danner en ny streng for hver "adskiller". Typisk et \n eller "
-        # Så længe den totale mængde karakterer talt er under den totale mængde i tekst filen, fortsætter vi.
-        print("Startloop færdig.")
         while charCounterTotal < len(story_file)-1:
                 # Kontroller altid først om vi har at gøre med gåseøjne eller andre sætningsindikatorer.
                 if re.search("\"",story_file[charCounterTotal]) != None:
