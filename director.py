@@ -12,8 +12,15 @@ with open ("exampletags.txt") as tags:
     charTags = re.findall("(?<=Character=\")[\w\d\s]+(?=\")", tags)
     
     # Derefter skal vi have vores liste af snippets
-    snippeter("examplestory.txt","debugmode")
+    snippetDictionary = snippeter("examplestory.txt","")
 
+    # Kontroller historiens perspektiv ud fra første 20 snippets
+    for x in snippetDictionary[:20]:
+        if x[0] == 0 and re.search(" I ",x[1]) != None:
+            isFirstPerson = True
+            break
+
+    print(isFirstPerson)
 
     print(charTags)
 
