@@ -37,10 +37,12 @@ with open("examplestory.txt") as story_file:
             if re.search("\"",story_file[charCounterTotal]) != None:
                 # Hvis der allerede er en sætning igang, afslut denne og indlem cache i liste.
                 if sentenceOngoing == True:
+                    stringCache = re.sub("\"", "", stringCache)
                     globals()[f"snippet{variableCounter}"] = (1,str(stringCache))
                     sentenceOngoing = False
                 # Ellers så påbegynd en ny sætning, og afslut tidligere narration
                 else:
+                    stringCache = re.sub("\"", "", stringCache)
                     globals()[f"snippet{variableCounter}"] = (0,str(stringCache))
                     sentenceOngoing = True
                 if stringCache != "":
@@ -55,8 +57,9 @@ with open("examplestory.txt") as story_file:
             elif re.search("[\n\r]",story_file[charCounterTotal]):
                 # Indlem først den nuværende string, og så spring over til næste paragraf.
                 if stringCache != "" and stringCache != " ":
-                    snippetDictionary.append([f"snippet{variableCounter}"])
+                    stringCache = re.sub("\"", "", stringCache)
                     globals()[f"snippet{variableCounter}"] = (0,str(stringCache))
+                    snippetDictionary.append([f"snippet{variableCounter}"])
                     variableCounter += 1
                 stringCache = ""
                 while re.search("[\n\r]", story_file[charCounterTotal]) != None:
