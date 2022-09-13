@@ -15,10 +15,26 @@ with open ("exampletags.txt") as tags:
     snippetDictionary = snippeter("examplestory.txt","")
 
     # Kontroller historiens perspektiv ud fra første 20 snippets
+    isFirstPerson = False
     for x in snippetDictionary[:20]:
         if x[0] == 0 and re.search(" I ",x[1]) != None:
             isFirstPerson = True
             break
+    
+    narrator = "Discord"
+    i = 0
+    lineList = []
+    for x in snippetDictionary:
+        if x[0] == 0:
+            input = (narrator, x[1])
+            lineList.append(input)
+        elif x[0] == 1:
+            for y in snippetDictionary[i:i+1]:
+
+
+
+
+    print(lineList)
 
     print(isFirstPerson)
 
