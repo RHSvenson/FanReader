@@ -39,7 +39,7 @@ def snippeter(file,args):
                         locals()[f"snippet{variableCounter}"] = (0,str(stringCache))
                         sentenceOngoing = True
                     if stringCache != "":
-                        snippetDictionary.append([f"snippet{variableCounter}"])
+                        snippetDictionary.append(locals()[f"snippet{variableCounter}"])
                         variableCounter += 1
 
                     # Nulstil og videre
@@ -52,7 +52,7 @@ def snippeter(file,args):
                     if stringCache != "" and stringCache != " ":
                         stringCache = re.sub("\"", "", stringCache)
                         locals()[f"snippet{variableCounter}"] = (0,str(stringCache))
-                        snippetDictionary.append([f"snippet{variableCounter}"])
+                        snippetDictionary.append(locals()[f"snippet{variableCounter}"])
                         variableCounter += 1
                     stringCache = ""
                     while re.search("[\n\r]", story_file[charCounterTotal]) != None:
