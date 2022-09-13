@@ -3,7 +3,7 @@ import re
 import time
 
 
-def snippeter(file):
+def snippeter(file,args):
     with open(file) as story_file:
         # Omdan story_file til en en lang string.
         story_file = story_file.read()
@@ -38,12 +38,12 @@ def snippeter(file):
                     # Hvis der allerede er en sætning igang, afslut denne og indlem cache i liste.
                     if sentenceOngoing == True:
                         stringCache = re.sub("\"", "", stringCache)
-                        globals()[f"snippet{variableCounter}"] = (1,str(stringCache))
+                        locals()[f"snippet{variableCounter}"] = (1,str(stringCache))
                         sentenceOngoing = False
                     # Ellers så påbegynd en ny sætning, og afslut tidligere narration
                     else:
                         stringCache = re.sub("\"", "", stringCache)
-                        globals()[f"snippet{variableCounter}"] = (0,str(stringCache))
+                        locals()[f"snippet{variableCounter}"] = (0,str(stringCache))
                         sentenceOngoing = True
                     if stringCache != "":
                         snippetDictionary.append([f"snippet{variableCounter}"])
@@ -58,7 +58,7 @@ def snippeter(file):
                     # Indlem først den nuværende string, og så spring over til næste paragraf.
                     if stringCache != "" and stringCache != " ":
                         stringCache = re.sub("\"", "", stringCache)
-                        globals()[f"snippet{variableCounter}"] = (0,str(stringCache))
+                        locals()[f"snippet{variableCounter}"] = (0,str(stringCache))
                         snippetDictionary.append([f"snippet{variableCounter}"])
                         variableCounter += 1
                     stringCache = ""
@@ -74,14 +74,12 @@ def snippeter(file):
 
 
 
-
-
-        print(snippetDictionary)
-        print(charCounterTotal)
-        i = 0
-        while i <= variableCounter:
-            print({i}, globals()[f"snippet{i}"])
-            i += 1
-            
-snippeter("examplestory.txt")
+        if args == "debugmode":
+            print(snippetDictionary)
+            print(charCounterTotal)
+            i = 0
+            while i < variableCounter:
+                print({i}, locals()[f"snippet{i}"])
+                i += 1
+        return snippetDictionary
 

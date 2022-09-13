@@ -1,6 +1,7 @@
 from genericpath import exists
 import re
 from unicodedata import name
+from snippeter import *
 
 
 with open ("exampletags.txt") as tags:
@@ -11,7 +12,10 @@ with open ("exampletags.txt") as tags:
     charTags = re.findall("(?<=Character=\")[\w\d\s]+(?=\")", tags)
     
     # Derefter skal vi have vores liste af snippets
-    
+    snippeter("examplestory.txt","debugmode")
+
+
+    print(charTags)
 
 
 
