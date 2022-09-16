@@ -1,16 +1,14 @@
-import time
 import urllib
 from bs4 import BeautifulSoup
 import requests
 import re
 
-
-url = "https://www.fimfiction.net/story/25125/the-keepers-of-discord"
-r = requests.get(url, allow_redirects=True)
+# Lader brugere insert det link de ønsker
+ff_url = input("Insert FemFiction Link Here: ")
+r = requests.get(ff_url, allow_redirects=True)
 soup = BeautifulSoup(r.text)
 txt_links = lambda tag: (getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs and 'txt' in tag.get_text().lower())
 results = soup.find_all(txt_links)
-
 
 
 results = re.findall("\/chapters\/download\/\d+\/txt",str(results))
@@ -19,7 +17,6 @@ while i <= 2:
     results[i] = "https://www.fimfiction.net"+results[i]
     i += 1
 print(results)
-
 
 
 # Side hvor links til alle kapitlerne er og skal findes
