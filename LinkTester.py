@@ -1,10 +1,10 @@
-import urllib
 from bs4 import BeautifulSoup
 import requests
 import re
 
-# Lader brugere insert det link de ønsker
-ff_url = input("Insert FemFiction Link Here: ")
+
+# Lader brugere insert den url de ønsker
+ff_url = input("Insert FimFiction Link Here: ")
 r = requests.get(ff_url, allow_redirects=True)
 soup = BeautifulSoup(r.text)
 txt_links = lambda tag: (getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs and 'txt' in tag.get_text().lower())
