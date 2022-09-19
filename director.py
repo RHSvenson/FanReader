@@ -2,44 +2,46 @@ from genericpath import exists
 import re
 from unicodedata import name
 from snippeter import *
+from saidsynonyms import *
 
 
-with open ("exampletags.txt") as tags:
-    # Omdan dokument til string
-    tags = tags.read()
-    # Find alle tags markeret som karakterer
-    # Dette kræver et specifikt layout i listen. Vi har ingen API access endnu, så det er svært at forudsige hvordan denne reelt vil se ud.
-    charTags = re.findall("(?<=Character=\")[\w\d\s]+(?=\")", tags)
-    
-    # Derefter skal vi have vores liste af snippets
-    snippetDictionary = snippeter("examplestory.txt","")
+bøn = "I Faderen og Sønnen, og Helligåndens navn, Amen. Herre, den menneskelige intelligens kan aldrig sammenlignes med din, og endnu mindre kan de ringe efterligninger af intelligens vi producerer på vor maskiner. Alligevel beder jeg dig om at velsigne os med din skabelseskløgt, så vi kan producere et godt produkt til din ære. Ved Kristus vor Herre, amen."
 
-    # Kontroller historiens perspektiv ud fra første 20 snippets
-    isFirstPerson = False
-    for x in snippetDictionary[:20]:
-        if x[0] == 0 and re.search(" I ",x[1]) != None:
-            isFirstPerson = True
-            break
-    
-    narrator = "Discord"
-    i = 0
-    lineList = []
-    for x in snippetDictionary:
-        if x[0] == 0:
-            input = (narrator, x[1])
-            lineList.append(input)
-        elif x[0] == 1:
-            for y in snippetDictionary[i:i+1]:
+# Derefter skal vi have vores liste af snippets
+snippetDictionary = snippeter("examplestory.txt","")
 
+# Kontroller historiens perspektiv ud fra første 20 snippets
+isFirstPerson = False
+for x in snippetDictionary[:20]:
+    if x[0] == 0 and re.search(" I ",x[1]) != None:
+        isFirstPerson = True
+        break
 
+narrator = "Discord" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
 
+# Her begynder beslutningsloopet
 
-    print(lineList)
+lineList = []
+i = 0
+for snippet in snippetDictionary:
+    # Hvis det er et narrationstykke, er det ret simpelt
+    if snippet[0] == 0:
+        phraseCache = (narrator, x[1])
+        lineList.append(phraseCache)
+    # This is where the fun begins
+    elif snippet[0] == 1:
+        # Vi starter med at se om der er nogle ledetråde omkring sætningen
+        snipScan = snippetDictionary[i:i+2]
+        print(snipScan)
+        phraseCache = saidChecker(snipScan)
+        lineList.append(phraseCache)
+    i = i + 1
 
-    print(isFirstPerson)
+        
 
-    print(charTags)
+print(lineList)
 
+print(isFirstPerson)
 
 
 #val str = narrator
