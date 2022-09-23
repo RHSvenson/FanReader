@@ -75,4 +75,3 @@ def snippeter(file,args):
                 print({i}, locals()[f"snippet{i}"])
                 i += 1
         return snippetDictionary
-

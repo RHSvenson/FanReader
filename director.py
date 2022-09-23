@@ -34,23 +34,31 @@ i = 0
 for snippet in snippetDictionary:
     # Hvis det er et narrationstykke, er det ret simpelt
     if snippet[0] == 0:
-        phraseCache = (narrator, x[1])
+        phraseCache = (narrator, snippet[1])
         lineList.append(phraseCache)
     # This is where the fun begins
     elif snippet[0] == 1:
         # Vi caller alle vores grammatisk tjekfunktioner til at opveje hvorvidt
         # vi har at gøre med den ene karakter eller anden.
-        snipScan = snippetDictionary[i-1:i+1]
+        snipScan = snippetDictionary[i-1:i+2]
         # saidChecker er den stærkeste af dem alle. Den tager prioritet,
         # da den næsten altid har ret.
-        phraseCache = saidChecker(snipScan, "Ordbøger/saidSynonyms.txt", charTags)
-        lineList.append(phraseCache)
-    i = i + 1
+        phraseCache = saidChecker(
+            snippets = snipScan, 
+            dictionaryPath = "Ordbøger/saidSynonyms.txt", 
+            charTags = charTags,
+            debug = False )
+
+        if phraseCache != "F":
+            lineList.append((phraseCache, snippet[1]))
+        else:
+            lineList.append(("Unknown", snippet[1]))
+
+    i += 1
 
         
 
 print(lineList)
-
 print(isFirstPerson)
 
 
