@@ -1,3 +1,5 @@
 examplestory.txt
 exampletags.txt
 __pycache__/snippeter.cpython-310.pyc
+Checkers/__pycache__/
+utils/__pycache__/
