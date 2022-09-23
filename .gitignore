@@ -2,3 +2,5 @@ examplestory.txt
 exampletags.txt
 __pycache__/snippeter.cpython-310.pyc
 nano read_in.py
+Checkers/__pycache__/
+utils/__pycache__/
