@@ -21,13 +21,17 @@ window.title('FanReader')
 
 window.geometry("500x500")
 
-window.config(background = "black")
+window.config(background = "pink")
 
 label_file_explorer = Label(
     window,
     text = "File Explorer",
-    width = 100, height = 4,
-    fg = "blue"
+    font="Ariel",
+    width = 44, height = 3,
+    fg = "pink",
+    bg = "blue",
+    relief=RAISED,
+    bd=10
 )
 
 button_explore = Button(
