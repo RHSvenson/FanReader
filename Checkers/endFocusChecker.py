@@ -1,0 +1,1 @@
+# Denne kontrollerer hvem der var hovedfokus i sidste stykke narration
