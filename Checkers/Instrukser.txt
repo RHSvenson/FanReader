@@ -1,0 +1,8 @@
+Alle Check filer SKAL bruge en charTags variabel!
+Denne SKAL være formateret som stringliste!
+
+ALLE Checker funktioner giver endten en string, eller et False tilbage.
+Stringen vil være i form af en hovedpersonsindikator ("Main"), en højtlæser-indikator (Narrator)
+eller en karakterindikator, f.eks. "Adam".
+
+False returneres hvis funktionen ikke finder nogen match.
