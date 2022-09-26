@@ -1,0 +1,1 @@
+# Denne kontrollerer om sidste sætning var et spørgsmål til en specifik karakter. Svaret vil så tilhøre den spørgsmålet var rettet mod.
