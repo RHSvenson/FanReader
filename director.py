@@ -48,8 +48,7 @@ def director():
             phraseCache = saidChecker(
                 snippets = snipScan, 
                 dictionaryPath = "Ordbøger/saidSynonyms.txt", 
-                charTags = charTags,
-                debug = False )
+                charTags = charTags)
 
             if phraseCache != "F":
                 lineList.append((phraseCache, snippet[1]))
