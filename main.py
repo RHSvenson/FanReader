@@ -53,7 +53,7 @@ fr.iconphoto(True, icon)
 #Grids
 #================================================================
 
-#En masse Fancy Grids som jeg llige skal læse lidt meget mere op på før det kommer til at se godt ud :/
+#En masse Fancy Grids som jeg lige skal læse lidt meget mere op på før det kommer til at se godt ud :/
 fr.grid_columnconfigure(1, weight=1)
 fr.grid_rowconfigure(0, weight=1)
 
@@ -156,7 +156,8 @@ fr.frame_info.rowconfigure(0, weight=1)
 fr.frame_info.columnconfigure(0, weight=1)
 
 fr.label_info_1 = customtkinter.CTkLabel(master=fr.frame_info,
-                                           text="Hello World",
+                                           text="Place Holder",
+                                           text_font=("Roboto Medium", 48),
                                            height=1260,
                                            corner_radius=6,
                                            fg_color=("white", "gray38"),
