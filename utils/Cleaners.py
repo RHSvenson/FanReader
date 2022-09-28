@@ -18,6 +18,6 @@ def ocFinder(snippetDictionary, charTags, saidSynonyms):
     ocList = []
     for snippet in snippetDictionary:
         if re.search("(?<!\.)\ ([A-Z][a-z]+\ )+"+saidSynonyms, snippet[1]) != None:
-            matchCache = re.findall("\ ([A-Z][a-z]+\ )+"+saidSynonyms,, snippet[1])
+            matchCache = re.findall("\ ([A-Z][a-z]+\ )+"+saidSynonyms, snippet[1])
             ocList = ocList + matchcache
         
