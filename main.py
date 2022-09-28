@@ -13,6 +13,7 @@ import customtkinter
 from tkinter import filedialog as fd
 #from utils.LinkTester import LinkTester
 import os, glob
+from director import director
 
 #================================================================
 #Bavgrunds tema
@@ -108,7 +109,7 @@ fr.button_1.grid(row=2, column=0, pady=10, padx=20)
 fr.button_2 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Generator",
                                         fg_color=("purple"),
-                                        command=click)
+                                        command=lambda: director())
 fr.button_2.grid(row=3, column=0, pady=10, padx=20)
 
 #Reader knap
