@@ -4,13 +4,15 @@
 #Import(s)
 #================================================================
 
+import imaplib
 from tkinter import *
 import tkinter.messagebox
+from tkinter.tix import IMAGE
 #CTk for progammet til at se mere prof ud!
 import customtkinter
 from tkinter import filedialog as fd
 #from utils.LinkTester import LinkTester
-import os
+import os, glob
 
 #================================================================
 #Bavgrunds tema
@@ -42,7 +44,7 @@ fr.minsize(640,480)
 #================================================================
 
 #Definer PNG som PhotoImage så det kan bruges icon nu og logo senere
-icon = PhotoImage(file='GarboIconForNow.png')
+icon = PhotoImage(file='GarboIconWithBook.png')
 #mini icon
 fr.iconphoto(True, icon)
 
@@ -86,8 +88,8 @@ fr.label_1 = customtkinter.CTkLabel(master=fr.frame_left,
                                textvariable=text_var,
                                compound='top',
                                text_font=("Roboto Medium", -16),
-                               width=64,
-                               height=64,
+                               width=84,
+                               height=84,
                                corner_radius=8)
 fr.label_1.grid(row=1, column=0, pady=10, padx=10)
 
@@ -136,6 +138,29 @@ fr.button_6 = customtkinter.CTkButton(master=fr.frame_left,
                                         ,fg_color=("purple"),
                                         command=click)
 fr.button_6.grid(row=7, column=0, pady=10, padx=20)
+
+#================================================================
+#Højre side vindu
+#================================================================
+
+fr.frame_right.rowconfigure((0, 1, 2, 3), weight=1)
+fr.frame_right.rowconfigure(7, weight=10)
+fr.frame_right.columnconfigure((0, 1), weight=1)
+fr.frame_right.columnconfigure(2, weight=0)
+
+fr.frame_info = customtkinter.CTkFrame(master=fr.frame_right)
+fr.frame_info.grid(row=0, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
+
+fr.frame_info.rowconfigure(0, weight=1)
+fr.frame_info.columnconfigure(0, weight=1)
+
+fr.label_info_1 = customtkinter.CTkLabel(master=fr.frame_info,
+                                           text="Hello World",
+                                           height=1260,
+                                           corner_radius=6,
+                                           fg_color=("white", "gray38"),
+                                           justify=tkinter.LEFT)
+fr.label_info_1.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
 
 #================================================================
 #Skal slutte med main loop (so don't you dare put anything after this!)
