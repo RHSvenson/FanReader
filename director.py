@@ -62,5 +62,3 @@ def director():
 
     print(lineList)
     print(isFirstPerson)
-
-director()
