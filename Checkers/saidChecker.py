@@ -7,17 +7,17 @@ def saidChecker(snippets, dictionaryPath, charTags, debug=False):
     for analysisObject in snippets:
         for character in charTags:
             if debug == False:
-                if re.search(str(character)+" "+saidSynonyms,analysisObject[1]) != None:
-                    return str(character)
+                if re.search(character+" "+saidSynonyms,analysisObject[1]) != None:
+                    return character
                     break
-                elif re.search(saidSynonyms+" "+str(character), analysisObject[1]) != None:
-                    return str(character)
+                elif re.search(saidSynonyms+" "+character, analysisObject[1]) != None:
+                    return character
                     break
-                elif re.search(saidSynonyms+" "+"I", analysisObject[1]) != None:
+                elif re.search(saidSynonyms+"\ I", analysisObject[1]) != None:
                     return "Main"
                     break
-                elif re.search("I"+" "+saidSynonyms, analysisObject[1]) != None:
-                    return "Main"
+                elif re.search("I\ "+saidSynonyms, analysisObject[1]) != None:
+                    return "MainX"
                     break
                 else:
                     return "F"

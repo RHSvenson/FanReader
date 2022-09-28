@@ -1,5 +1,5 @@
 
-def director(whatever):
+def director():
     from genericpath import exists
     import re
     from unicodedata import name
@@ -20,7 +20,7 @@ def director(whatever):
             isFirstPerson = True
             break
 
-    narrator = "Discord" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
+    narrator = "Narrator" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
 
     # Enormt vigtig variabel. Ideelt vil denne hentes fra en API værdi, men kan alternativt manuelt udpejes.
     from utils.Cleaners import charTagsGen
@@ -42,7 +42,7 @@ def director(whatever):
         elif snippet[0] == 1:
             # Vi caller alle vores grammatisk tjekfunktioner til at opveje hvorvidt
             # vi har at gøre med den ene karakter eller anden.
-            snipScan = snippetDictionary[i-1:i+2]
+            snipScan = snippetDictionary[i-1:i+1]
             # saidChecker er den stærkeste af dem alle. Den tager prioritet,
             # da den næsten altid har ret.
             phraseCache = saidChecker(
@@ -62,3 +62,5 @@ def director(whatever):
 
     print(lineList)
     print(isFirstPerson)
+
+director()
