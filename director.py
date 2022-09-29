@@ -1,4 +1,7 @@
 
+from xml.dom.minidom import CharacterData
+
+
 def director():
     from genericpath import exists
     import re
@@ -34,31 +37,34 @@ def director():
     # Loopet benytter en i variabel som tæller.
     i = 0
     for snippet in snippetDictionary:
-        # Hvis det er et narrationstykke, er det ret simpelt
-        if snippet[0] == 0:
-            phraseCache = (narrator, snippet[1])
-            lineList.append(phraseCache)
-        # This is where the fun begins
-        elif snippet[0] == 1:
-            # Vi caller alle vores grammatisk tjekfunktioner til at opveje hvorvidt
-            # vi har at gøre med den ene karakter eller anden.
-            snipScan = snippetDictionary[i-1:i+1]
-            # saidChecker er den stærkeste af dem alle. Den tager prioritet,
-            # da den næsten altid har ret.
-            phraseCache = saidChecker(
-                snippets = snipScan, 
-                dictionaryPath = "Ordbøger/saidSynonyms.txt", 
-                charTags = charTags,
-                debug = False )
 
-            if phraseCache != "F":
-                lineList.append((phraseCache, snippet[1]))
-            else:
-                lineList.append(("Unknown", snippet[1]))
+        # Alle snippets gennemgår alle checks.
 
-        i += 1
+        # saidChecker er altid først, da den er mest pålidelig. De andre bygger videre på dens return.
+        phraseCache = saidChecker(snippet = snippet, dictionary="Ordbøger/saidSynonyms.txt", charTags=charTags)
+
+        if i < 4:
+            phraseCache = phraseCache
+        # Hvis der var en saidBefore i tidligere sætning, så springer vi alt det her over, da vi allerede kender svaret.
+        elif lineList[i-1][2] != None and lineList[i-1][2][0] == "saidBefore":
+            phraseCache = (lineList[i-1][2][1], phraseCache[1], phraseCache[2])
+        elif phraseCache[2] != None:
+            if phraseCache[2] == "saidAfter":
+                # Hvis der var en saidAfter, så sæt tidligere linje til (karakter, samme linje, samme data)
+                lineList[i-1] = (phraseCache[0], lineList[i-1][1], lineList[i-1][2])
+
+
+        
+
+
+        ## Indsættelse til sidst
+        lineList.append(phraseCache)
+        
+
+        i = i + 1
 
             
 
     print(lineList)
     print(isFirstPerson)
+    print(phraseCache)

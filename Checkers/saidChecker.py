@@ -1,44 +1,39 @@
 # Funktion anvendt til at kontrollere tilstedeværelsen af
 # sætninger som "I said" omkring en snippet
-def saidChecker(snippets, dictionaryPath, charTags, debug=False):
+import sys
+
+
+def saidChecker(snippet, dictionary, charTags):
     import re
-    with open(dictionaryPath) as file:
-        saidSynonyms = file.read()
-    for analysisObject in snippets:
+    breakFlag = False
+    with open(dictionary) as file:
+        synonyms = file.read()
+        saidSynonyms = re.findall(pattern="\w+",string=synonyms)
+
+    for synonym in saidSynonyms:
         for character in charTags:
-            if debug == False:
-                if re.search(character+" "+saidSynonyms,analysisObject[1]) != None:
-                    return character
-                    break
-                elif re.search(saidSynonyms+" "+character, analysisObject[1]) != None:
-                    return character
-                    break
-                elif re.search(saidSynonyms+"\ I", analysisObject[1]) != None:
-                    return "Main"
-                    break
-                elif re.search("I\ "+saidSynonyms, analysisObject[1]) != None:
-                    return "MainX"
-                    break
-                else:
-                    return "F"
-                    break
-            elif debug == True:
-                print(str(character)+" "+saidSynonyms)
-                print(str(character))
-                print(analysisObject[1])
-                print(saidSynonyms)
-                if re.search(str(character)+" "+saidSynonyms,analysisObject[1]) != None:
-                    return str(character)
-                    break
-                elif re.search(saidSynonyms+" "+str(character), analysisObject[1]) != None:
-                    return str(character)
-                    break
-                elif re.search(saidSynonyms+" "+"I", analysisObject[1]) != None:
-                    return "Main"
-                    break
-                elif re.search("I"+" "+saidSynonyms, analysisObject[1]) != None:
-                    return "Main"
-                    break
-                else:
-                    return "F"
-                    break
+            if re.search(character+"\ "+synonym, snippet[1]) != None:
+                phraseCache = (None, snippet[1], ("saidbefore",character))
+                return phraseCache
+                breakFlag = True
+                break
+            elif re.search(synonym+"\ "+character, snippet[1]) != None:
+                phraseCache = (None, snippet[1], "saidafter")
+                return phraseCache
+                breakFlag = True
+                break
+            elif re.search("I\ "+character, snippet[1]) and snippet[0] == 0:
+                phraseCache = (None, snippet[1], ("saidbefore","main"))
+                return phraseCache
+                breakFlag = True
+                break
+            else:
+                phraseCache = (None, snippet[1], None)
+                return phraseCache
+                breakFlag = True
+                break
+            if breakFlag == True:
+                break
+        if breakFlag == True:
+            break
+    
