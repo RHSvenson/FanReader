@@ -12,28 +12,19 @@ def saidChecker(snippet, dictionary, charTags):
 
     for synonym in saidSynonyms:
         for character in charTags:
-            if re.search(character+"\ "+synonym, snippet[1]) != None:
+            if re.search(character+" "+synonym, snippet[1]) != None:
                 phraseCache = (None, snippet[1], ("saidbefore",character))
-                return phraseCache
                 breakFlag = True
-                break
-            elif re.search(synonym+"\ "+character, snippet[1]) != None:
-                phraseCache = (None, snippet[1], "saidafter")
-                return phraseCache
+            elif re.search(synonym+" "+character, snippet[1]) != None:
+                phraseCache = (None, snippet[1], ("saidafter", character))
                 breakFlag = True
-                break
-            elif re.search("I\ "+character, snippet[1]) and snippet[0] == 0:
+            elif re.search("I "+character, snippet[1]) != None and snippet[0] == 0:
                 phraseCache = (None, snippet[1], ("saidbefore","main"))
-                return phraseCache
                 breakFlag = True
-                break
             else:
                 phraseCache = (None, snippet[1], None)
-                return phraseCache
-                breakFlag = True
-                break
             if breakFlag == True:
                 break
+        return phraseCache
         if breakFlag == True:
             break
-    

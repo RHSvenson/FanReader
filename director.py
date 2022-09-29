@@ -55,8 +55,9 @@ def director():
 
 
         
-
-
+        print(phraseCache)
+        if snippet[0] == 0:
+            phraseCache = (narrator, phraseCache[1], phraseCache[2])
         ## Indsættelse til sidst
         lineList.append(phraseCache)
         
@@ -65,6 +66,5 @@ def director():
 
             
 
-    print(lineList)
-    print(isFirstPerson)
-    print(phraseCache)
+    for line in lineList:
+        print(line)
