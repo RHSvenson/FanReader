@@ -9,11 +9,7 @@ def saidChecker(snippet, dictionary, charTags):
     with open(dictionary) as file:
         synonyms = file.read()
         saidSynonyms = re.findall(pattern="\w+",string=synonyms)
-
     for synonym in saidSynonyms:
-        if breakFlag == True:
-            return phraseCache
-            break
         for character in charTags:
             if breakFlag == True:
                 break
@@ -30,11 +26,11 @@ def saidChecker(snippet, dictionary, charTags):
                 breakFlag = True
                 break
             elif re.search("he "+synonym, snippet[1]) != None and snippet[0] == 0:
-                phrasecache = (None, snippet[1], ("saidafter", "lastmale"))
+                phraseCache = (None, snippet[1], ("saidafter", "lastmale"))
                 breakFlag = True
                 break
             elif re.search("she "+synonym, snippet[1]) != None and snippet[0] == 0:
-                phrasecache = (None, snippet[1], ("saidafter", "lastfemale"))
+                phraseCache = (None, snippet[1], ("saidafter", "lastfemale"))
                 breakFlag = True
                 break
             else:
