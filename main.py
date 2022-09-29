@@ -45,9 +45,9 @@ fr.minsize(640,480)
 #================================================================
 
 #Definer PNG som PhotoImage så det kan bruges icon nu og logo senere
-icon = PhotoImage(file='GarboIconWithBook.png')
+unicon = PhotoImage(file='GarboIconWithBook100px.png')
 #mini icon
-fr.iconphoto(True, icon)
+fr.iconphoto(True, unicon)
 
 #================================================================
 #Grids
@@ -85,10 +85,10 @@ def click():
 #FanReader Txet og Logo
 text_var = tkinter.StringVar(value="FanReader")
 fr.label_1 = customtkinter.CTkLabel(master=fr.frame_left,
-                               image=icon,
+                               image=unicon,
                                textvariable=text_var,
                                compound='top',
-                               text_font=("Roboto Medium", -16),
+                               text_font=("Roboto Medium", 16),
                                width=84,
                                height=84,
                                corner_radius=8)
