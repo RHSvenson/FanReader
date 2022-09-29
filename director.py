@@ -37,17 +37,18 @@ def director():
     # Loopet benytter en i variabel som tæller.
     i = 0
     for snippet in snippetDictionary:
+
         # Alle snippets gennemgår alle checks.
 
         # saidChecker er altid først, da den er mest pålidelig. De andre bygger videre på dens return.
         phraseCache = saidChecker(snippet = snippet, dictionary="Ordbøger/saidSynonyms.txt", charTags=charTags)
 
+        if i < 4:
+            phraseCache = phraseCache
         # Hvis der var en saidBefore i tidligere sætning, så springer vi alt det her over, da vi allerede kender svaret.
-        if lineList[i-1][2][0] == "saidBefore":
-            lineList.append(lineList[i-1[2][1]], phraseCache[1], phraseCache[2])
-            break
-        
-        if phraseCache[2] != None:
+        elif lineList[i-1][2] != None and lineList[i-1][2][0] == "saidBefore":
+            phraseCache = (lineList[i-1][2][1], phraseCache[1], phraseCache[2])
+        elif phraseCache[2] != None:
             if phraseCache[2] == "saidAfter":
                 # Hvis der var en saidAfter, så sæt tidligere linje til (karakter, samme linje, samme data)
                 lineList[i-1] = (phraseCache[0], lineList[i-1][1], lineList[i-1][2])
@@ -60,9 +61,10 @@ def director():
         lineList.append(phraseCache)
         
 
-        i += 1
+        i = i + 1
 
             
 
     print(lineList)
     print(isFirstPerson)
+    print(phraseCache)
