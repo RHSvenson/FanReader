@@ -137,7 +137,7 @@ fr.button_5.grid(row=6, column=0, pady=10, padx=20)
 fr.button_6 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Exit"
                                         ,fg_color=("purple"),
-                                        command=click)
+                                        command=quit)
 fr.button_6.grid(row=7, column=0, pady=10, padx=20)
 
 #================================================================
