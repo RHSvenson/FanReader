@@ -46,12 +46,12 @@ def director():
         if i < 4:
             phraseCache = phraseCache
         # Hvis der var en saidBefore i tidligere sætning, så springer vi alt det her over, da vi allerede kender svaret.
-        elif lineList[i-1][2] != None and lineList[i-1][2][0] == "saidBefore":
+        elif lineList[i-1][2] != None and lineList[i-1][2][0] == "saidbefore":
             phraseCache = (lineList[i-1][2][1], phraseCache[1], phraseCache[2])
         elif phraseCache[2] != None:
-            if phraseCache[2] == "saidAfter":
+            if phraseCache[2][0] == "saidafter":
                 # Hvis der var en saidAfter, så sæt tidligere linje til (karakter, samme linje, samme data)
-                lineList[i-1] = (phraseCache[0], lineList[i-1][1], lineList[i-1][2])
+                lineList[i-1] = (phraseCache[2][1], lineList[i-1][1], lineList[i-1][2])
 
 
         
@@ -62,7 +62,7 @@ def director():
         lineList.append(phraseCache)
         
 
-        i = i + 1
+        i += 1
 
             
 
