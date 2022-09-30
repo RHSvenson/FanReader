@@ -3,8 +3,10 @@
 
 # Funktionen skal bruge:
 # Historiens navn
+# Kapitel nummer
 # Primære univers
-# VALGFRIT: Historiens kategorier/tags
-# VALGFRIT: Historiens ukendte navne (typisk genkendte OC's)
+# VALGFRIT: kapitlets kategorier/tags
+# VALGFRIT: kapitlets deltagende karakterer
 
-def jsonLogger()
+def jsonLogger(storyName, chapterNumber, universe, tags=None, characterList=None):
+    
