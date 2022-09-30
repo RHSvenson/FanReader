@@ -1,14 +1,10 @@
 # Hovedmenu script
 
-<<<<<<< HEAD
-from msilib.schema import Font
-=======
 #================================================================
 #Import(s)
 #================================================================
 
 import imaplib
->>>>>>> 2e9a48104226a49134bb1c3a74a9a25d0a9d8a9d
 from tkinter import *
 import tkinter.messagebox
 from tkinter.tix import IMAGE
@@ -26,19 +22,9 @@ from director import director
 #Sætter vores appearance/theme
 customtkinter.set_appearance_mode("Dark")
 
-<<<<<<< HEAD
-def display():
-    if (x.get()==1):
-        print ("Ja, okay makker")
- 
-
-# Selve vinduet nevnet, størelsen og bagrunds farven. HOT!
-window = Tk()
-=======
 #================================================================
 #CTk Root/Main og title
 #================================================================
->>>>>>> 2e9a48104226a49134bb1c3a74a9a25d0a9d8a9d
 
 #Root/Main (der skal bruges CTk og ikke Tk)
 fr = customtkinter.CTk()
@@ -49,77 +35,6 @@ fr.title("FanReader")
 #Windows difinacioner
 #================================================================
 
-<<<<<<< HEAD
-window.config(background = "pink")
-
-# Overskrift lablen, som er det menuen hedder.
-label_file_explorer = Label(
-    window,
-    text = "File Explorer",
-    font = ("Ariel",20,"bold"),
-    width = 29, height = 3,
-    fg = "white",
-    bg = "blue",
-    relief = RAISED,
-    bd = 10
-)
-
-# En knap som skal gå til et directory med understøttede link på historier.
-button_internetlink = Button(
-    window,
-    text = "Internet Link",
-    width = 14, height = 1,
-    font = ("Ariel",20),
-    bg = "purple"
-)
-
-# En knap som browser filer og via, skal man kunne vælge en .txt file som loades ind i programmet.
-button_explore = Button(
-    window,
-    text = "Browse Files",
-    command = gennemgåFiler,
-    width = 14, height = 1,
-    font = ("Ariel",20),
-    bg = ("Green")
-)
-
-# En knap som lukker programmet.
-button_exit = Button(
-    window,
-    text = "Exit",
-    command = exit,
-    width = 14, height = 1,
-    font = ("Ariel",20),
-    bg = ("Red")
-)
-
-# En check box vi kan skule noget bag.
-
-x = IntVar()
-
-check_button = Checkbutton(
-    window,
-    text = "Jeg er over 18",
-    variable = x,
-    onvalue = 1,
-    offvalue = 0,
-    command = display,
-    font = ("Ariel", 15),
-    bg = ("pink"),
-    activebackground = "pink"
-)
-
-# Hvor labes og buttons er i winduets grid.
-label_file_explorer.grid(column = 1, row = 1)
-
-button_internetlink.grid(column = 1, row = 2)
-
-button_explore.grid(column = 1, row = 3)
-
-button_exit.grid(column = 1, row = 4)
-
-check_button.grid(column = 1, row = 5)
-=======
 #window start størrelse
 fr.geometry("860x480")
 #Window min størrelse
@@ -149,7 +64,6 @@ fr.frame_left.grid(row=0, column=0, sticky="nswe")
 
 fr.frame_right = customtkinter.CTkFrame(master=fr)
 fr.frame_right.grid(row=0, column=1, sticky="nswe", padx=20, pady=20)
->>>>>>> 2e9a48104226a49134bb1c3a74a9a25d0a9d8a9d
 
 fr.frame_left.grid_rowconfigure(0, minsize=10)
 fr.frame_left.grid_rowconfigure(5, weight=1)
