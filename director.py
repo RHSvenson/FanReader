@@ -22,13 +22,16 @@ def director():
         if x[0] == 0 and re.search(" I ",x[1]) != None:
             isFirstPerson = True
             break
-
-    narrator = "Narrator" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
-
+    
     # Enormt vigtig variabel. Ideelt vil denne hentes fra en API værdi, men kan alternativt manuelt udpejes.
     from utils.Cleaners import charTagsGen
     charTagsPath = "exampletags.txt"
     charTags = charTagsGen(charTagsPath)
+
+    # Se hvilke karakterer vi har at gøre med i kapitlet.
+    chapterActors = nameChecker(snippetList="snippetDictionary", charTags=charTags, args=None)
+
+    narrator = "Narrator" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
 
     # Linelist er variablen som opbevarer den resultatet af vores script.
     # TODO: Efterbehandl denne
