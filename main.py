@@ -65,10 +65,12 @@ fr.frame_left.grid(row=0, column=0, sticky="nswe")
 fr.frame_right = customtkinter.CTkFrame(master=fr)
 fr.frame_right.grid(row=0, column=1, sticky="nswe", padx=20, pady=20)
 
+#kontrollerer toppen af frame_left
 fr.frame_left.grid_rowconfigure(0, minsize=10)
-fr.frame_left.grid_rowconfigure(5, weight=1)
-fr.frame_left.grid_rowconfigure(8, minsize=20)
-fr.frame_left.grid_rowconfigure(11, minsize=10)
+fr.frame_left.grid_rowconfigure(8, weight=1)
+#kontrollerer bunden af frame_left
+fr.frame_left.grid_rowconfigure(9, minsize=20)
+fr.frame_left.grid_rowconfigure(11, minsize=15)
 
 #================================================================
 #Command/def(s)
@@ -138,7 +140,7 @@ fr.button_6 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Exit"
                                         ,fg_color=("purple"),
                                         command=quit)
-fr.button_6.grid(row=7, column=0, pady=10, padx=20)
+fr.button_6.grid(row=10, column=0, pady=10, padx=20)
 
 #================================================================
 #Højre side vindu
