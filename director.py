@@ -46,18 +46,32 @@ def director():
         if i < 4:
             phraseCache = phraseCache
         # Hvis der var en saidBefore i tidligere sætning, så springer vi alt det her over, da vi allerede kender svaret.
-        elif lineList[i-1][2] != None and lineList[i-1][2][0] == "saidbefore":
-            phraseCache = (lineList[i-1][2][1], phraseCache[1], phraseCache[2])
-        elif phraseCache[2] != None:
-            if phraseCache[2][0] == "saidafter":
+        elif lineList[i-1]["Parameters"] != None and lineList[i-1]["Parameters"][0] == "saidbefore":
+            phraseCache = {
+                # lineList indexet her henter karakterstykket fra Parameter indexet fra sidste phraseCache.
+                "Character": lineList[i-1]["Parameters"][1],
+                "Sentence": phraseCache["Sentence"],
+                "Parameters": phraseCache["Parameters"]
+            }
+        elif phraseCache["Parameters"] != None:
+            if phraseCache["Parameters"][0] == "saidafter":
                 # Hvis der var en saidAfter, så sæt tidligere linje til (karakter, samme linje, samme data)
-                lineList[i-1] = (phraseCache[2][1], lineList[i-1][1], lineList[i-1][2])
+                lineList[i-1] = (
+                    phraseCache["Parameters"][1],
+                    # lineList indexene her referer til sætningne inden nuværende i loopet.
+                    lineList[i-1]["Sentence"],
+                    lineList[i-1]["Parameters"]
+                )
 
 
         
         print(phraseCache)
         if snippet[0] == 0:
-            phraseCache = (narrator, phraseCache[1], phraseCache[2])
+            phraseCache = {
+                "Character": narrator, 
+                "Sentence": phraseCache["Sentence"], 
+                "Parameters": phraseCache["Parameters"]
+            }
         ## Indsættelse til sidst
         lineList.append(phraseCache)
         
