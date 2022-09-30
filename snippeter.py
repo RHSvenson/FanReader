@@ -62,7 +62,8 @@ def snippeter(file,args):
                     stringCache += story_file[charCounterTotal]
                     charCounterTotal += 1
                 else:
-                    print("Fejl, ukendt karakter:", story_file[charCounterTotal])
+                    if args == "debugmode":
+                        print("Fejl, ukendt karakter:", story_file[charCounterTotal])
                     charCounterTotal += 1
 
 

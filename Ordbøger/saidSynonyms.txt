@@ -1,1 +1,1 @@
-[(said)(spoke)(aired)(replied)(shared)(sounded)(vented)(voiced)(blabbered)(blurted)(announced)(broadcast)(declared)(proclaimed)(affirmed)(alleged)(asserted)(breathed)(chirped)(gasped)(mouthed)(purred)(shouted)(responded)(spluttered)(spouted)(whispered)(commented)(remarked)]
+said,spoke,aired,replied,shared,sounded,vented,voiced,blabbered,blurted,announced,broadcast,declared,proclaimed,affirmed,alleged,asserted,breathed,chirped,gasped,mouthed,purred,shouted,responded,spluttered,spouted,whispered,commented,remarked

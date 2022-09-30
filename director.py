@@ -1,82 +1,70 @@
-from genericpath import exists
-import re
-from unicodedata import name
-from snippeter import *
-#from utils.Cleaners import charTagsGen
-from Checkers.saidChecker import saidChecker
+
+from xml.dom.minidom import CharacterData
 
 
-bøn = "I Faderen og Sønnen, og Helligåndens navn, Amen. Herre, den menneskelige intelligens kan aldrig sammenlignes med din, og endnu mindre kan de ringe efterligninger af intelligens vi producerer på vor maskiner. Alligevel beder jeg dig om at velsigne os med din skabelseskløgt, så vi kan producere et godt produkt til din ære. Ved Kristus vor Herre, amen."
+def director():
+    from genericpath import exists
+    import re
+    from unicodedata import name
+    from snippeter import snippeter
+    #from utils.Cleaners import charTagsGen
+    from Checkers.saidChecker import saidChecker
 
-# Derefter skal vi have vores liste af snippets
-snippetDictionary = snippeter("examplestory.txt","")
 
-# Kontroller historiens perspektiv ud fra første 20 snippets
-isFirstPerson = False
-for x in snippetDictionary[:20]:
-    if x[0] == 0 and re.search(" I ",x[1]) != None:
-        isFirstPerson = True
-        break
+    bøn = "I Faderen og Sønnen, og Helligåndens navn, Amen. Herre, den menneskelige intelligens kan aldrig sammenlignes med din, og endnu mindre kan de ringe efterligninger af intelligens vi producerer på vor maskiner. Alligevel beder jeg dig om at velsigne os med din skabelseskløgt, så vi kan producere et godt produkt til din ære. Ved Kristus vor Herre, amen."
 
-narrator = "Discord" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
+    # Derefter skal vi have vores liste af snippets
+    snippetDictionary = snippeter("examplestory.txt","")
 
-# Enormt vigtig variabel. Ideelt vil denne hentes fra en API værdi, men kan alternativt manuelt udpejes.
-from utils.Cleaners import charTagsGen
-charTagsPath = "exampletags.txt"
-charTags = charTagsGen(charTagsPath)
+    # Kontroller historiens perspektiv ud fra første 20 snippets
+    isFirstPerson = False
+    for x in snippetDictionary[:20]:
+        if x[0] == 0 and re.search(" I ",x[1]) != None:
+            isFirstPerson = True
+            break
 
-# Linelist er variablen som opbevarer den resultatet af vores script.
-# TODO: Efterbehandl denne
-lineList = []
+    narrator = "Narrator" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
 
-# Loopet benytter en i variabel som tæller.
-i = 0
-for snippet in snippetDictionary:
-    # Hvis det er et narrationstykke, er det ret simpelt
-    if snippet[0] == 0:
-        phraseCache = (narrator, snippet[1])
-        lineList.append(phraseCache)
-    # This is where the fun begins
-    elif snippet[0] == 1:
-        # Vi caller alle vores grammatisk tjekfunktioner til at opveje hvorvidt
-        # vi har at gøre med den ene karakter eller anden.
-        snipScan = snippetDictionary[i-1:i+2]
-        # saidChecker er den stærkeste af dem alle. Den tager prioritet,
-        # da den næsten altid har ret.
-        phraseCache = saidChecker(
-            snippets = snipScan, 
-            dictionaryPath = "Ordbøger/saidSynonyms.txt", 
-            charTags = charTags,
-            debug = False )
+    # Enormt vigtig variabel. Ideelt vil denne hentes fra en API værdi, men kan alternativt manuelt udpejes.
+    from utils.Cleaners import charTagsGen
+    charTagsPath = "exampletags.txt"
+    charTags = charTagsGen(charTagsPath)
 
-        if phraseCache != "F":
-            lineList.append((phraseCache, snippet[1]))
-        else:
-            lineList.append(("Unknown", snippet[1]))
+    # Linelist er variablen som opbevarer den resultatet af vores script.
+    # TODO: Efterbehandl denne
+    lineList = []
 
-    i += 1
+    # Loopet benytter en i variabel som tæller.
+    i = 0
+    for snippet in snippetDictionary:
+
+        # Alle snippets gennemgår alle checks.
+
+        # saidChecker er altid først, da den er mest pålidelig. De andre bygger videre på dens return.
+        phraseCache = saidChecker(snippet = snippet, dictionary="Ordbøger/saidSynonyms.txt", charTags=charTags)
+
+        if i < 4:
+            phraseCache = phraseCache
+        # Hvis der var en saidBefore i tidligere sætning, så springer vi alt det her over, da vi allerede kender svaret.
+        elif lineList[i-1][2] != None and lineList[i-1][2][0] == "saidbefore":
+            phraseCache = (lineList[i-1][2][1], phraseCache[1], phraseCache[2])
+        elif phraseCache[2] != None:
+            if phraseCache[2][0] == "saidafter":
+                # Hvis der var en saidAfter, så sæt tidligere linje til (karakter, samme linje, samme data)
+                lineList[i-1] = (phraseCache[2][1], lineList[i-1][1], lineList[i-1][2])
+
 
         
+        print(phraseCache)
+        if snippet[0] == 0:
+            phraseCache = (narrator, phraseCache[1], phraseCache[2])
+        ## Indsættelse til sidst
+        lineList.append(phraseCache)
+        
 
-print(lineList)
-print(isFirstPerson)
+        i += 1
 
+            
 
-#val str = narrator
-#    if "i" is within the current_line in narration:
-#        then str = "charactertag"
-#    elif "i" does not exists within the scope of narration
-#        then str = "narratortag"
-
-
-#val str = charactertag
-#    if line within director_log holds defined name
-#        then str = ("charactertag"+(1))
-
-
-#srefer to narratortag
-#    narrator = 0
-
-
-#refer to charactertag
-#    characrer = (int+1)
+    for line in lineList:
+        print(line)

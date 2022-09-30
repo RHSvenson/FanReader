@@ -10,3 +10,14 @@ def charTagsGen(file):
         import re
         charTags = re.findall("(?<=Character=\")[\w\d\s]+(?=\")", tags)
         return charTags
+
+# Script til at lokere og spørge om brugerinput angående ukendte øgenavne.
+# Input er snippetliste, samt allerede kendte characters i form af charTags liste.
+def ocFinder(snippetDictionary, charTags, saidSynonyms):
+    import re
+    ocList = []
+    for snippet in snippetDictionary:
+        if re.search("(?<!\.)\ ([A-Z][a-z]+\ )+"+saidSynonyms, snippet[1]) != None:
+            matchCache = re.findall("\ ([A-Z][a-z]+\ )+"+saidSynonyms, snippet[1])
+            ocList = ocList + matchcache
+        
