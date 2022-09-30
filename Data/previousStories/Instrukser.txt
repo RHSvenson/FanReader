@@ -1,0 +1,1 @@
+Denne fil eksisterer for at få git til at samarbejde.

@@ -1,13 +1,7 @@
 examplestory.txt
 exampletags.txt
-__pycache__/snippeter.cpython-310.pyc
-<<<<<<< HEAD
 nano read_in.py
-Checkers/__pycache__/
-utils/__pycache__/
-=======
-Checkers/__pycache__/
-utils/__pycache__/
-__pycache__/director.cpython-310.pyc
+__pycache__
 testbed.py
->>>>>>> 2e9a48104226a49134bb1c3a74a9a25d0a9d8a9d
+Data/previousStories/*.json
+Data/previousStories/*/
