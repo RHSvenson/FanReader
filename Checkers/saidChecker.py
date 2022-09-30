@@ -25,11 +25,11 @@ def saidChecker(snippet, dictionary, charTags):
                 phraseCache = (None, snippet[1], ("saidafter", "main"))
                 breakFlag = True
                 break
-            elif re.search("he "+synonym, snippet[1]) != None and snippet[0] == 0:
+            elif re.search("( he )|( He )"+synonym, snippet[1]) != None and snippet[0] == 0:
                 phraseCache = (None, snippet[1], ("saidafter", "lastmale"))
                 breakFlag = True
                 break
-            elif re.search("she "+synonym, snippet[1]) != None and snippet[0] == 0:
+            elif re.search("( she )|( She )"+synonym, snippet[1]) != None and snippet[0] == 0:
                 phraseCache = (None, snippet[1], ("saidafter", "lastfemale"))
                 breakFlag = True
                 break
