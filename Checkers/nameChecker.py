@@ -1,4 +1,4 @@
-# Denne funktion kontrollerer om et detected øgenavn findes i karakterdatabasen.
+# Denne funktion kontrollerer om der et øgenavn i snippet som findes i karakterdatabasen.
 # Denne funktion tager imod:
 # 1 stk. sætning
 # 1 stk. univers
