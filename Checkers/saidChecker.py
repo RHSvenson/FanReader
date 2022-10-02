@@ -62,9 +62,6 @@ def saidChecker(snippet, dictionary, charTags):
             if breakFlag == True:
                 break
 
-        # Hvis der ikke findes nogen matches fra det første loop, så begyn at kigge på aliases
-        for addresses in 
-
 
         return phraseCache
         if breakFlag == True:
