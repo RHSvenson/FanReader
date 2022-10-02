@@ -19,7 +19,7 @@ def linkTester(url):
     print(results)
     return(results)
 
-linkTester(https://www.fimfiction.net/story/164364/how-to-court-alicorns-a-humans-guide)
+linkTester("https://www.fimfiction.net/story/164364/how-to-court-alicorns-a-humans-guide")
 
 
 # Side hvor links til alle kapitlerne er og skal findes
