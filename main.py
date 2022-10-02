@@ -84,9 +84,19 @@ fr.frame_right.columnconfigure(2, weight=0)
 #Command/def(s)
 #=============================================================================================
 
-#Command for at tjekke knapperne under debugging og bliver useless i det færdige build
+#Test command for at tjekke knapperne under debugging og bliver useless i det færdige build
 def click():
-    print("Click")
+    print("Test Click")
+
+#Ændre frame vinduet i højre side af FR
+def show_frame(frame):
+    print("Clicked Button")
+    frame.tkraise()
+
+#Lukker FR
+def close_fr():
+    print("Quit Window")
+    quit()
 
 #=============================================================================================
 #Left Side Logo
@@ -112,62 +122,139 @@ fr.label_1.grid(row=1, column=0, pady=10, padx=10)
 fr.button_1 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Fetcher",
                                         fg_color=("purple"),
-                                        command=click)
+                                        command=lambda:show_frame(fr.fetcher_frame))
 fr.button_1.grid(row=2, column=0, pady=10, padx=20)
 
 #Generator knap
 fr.button_2 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Generator",
                                         fg_color=("purple"),
-                                        command=director)
+                                        command=lambda:show_frame(fr.generator_frame))
 fr.button_2.grid(row=3, column=0, pady=10, padx=20)
 
 #Reader knap
 fr.button_3 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Reader",
                                         fg_color=("purple"),
-                                        command=click)
+                                        command=lambda:show_frame(fr.reader_frame))
 fr.button_3.grid(row=4, column=0, pady=10, padx=20)
 
 #History knap
 fr.button_4 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="History",
                                         fg_color=("purple"),
-                                        command=click)
+                                        command=lambda:show_frame(fr.history_frame))
 fr.button_4.grid(row=5, column=0, pady=10, padx=20)
 
 #Settings knap
 fr.button_5 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Settings",
                                         fg_color=("purple"),
-                                        command=click)
+                                        command=lambda:show_frame(fr.settings_frame))
 fr.button_5.grid(row=6, column=0, pady=10, padx=20)
 
 #Exit knap
 fr.button_6 = customtkinter.CTkButton(master=fr.frame_left,
                                         text="Exit"
                                         ,fg_color=("purple"),
-                                        command=quit)
+                                        command=close_fr)
 fr.button_6.grid(row=10, column=0, pady=10, padx=20)
 
 #=============================================================================================
 #Højre side vindu
 #=============================================================================================
 
-fr.frame_info = customtkinter.CTkFrame(master=fr.frame_right)
-fr.frame_info.grid(row=0, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
+#Definere de forskellige frame vinduer (% fr.first_frame) til højre side af FR
+fr.fetcher_frame = customtkinter.CTkFrame(master=fr.frame_right)
+fr.generator_frame = customtkinter.CTkFrame(master=fr.frame_right)
+fr.reader_frame = customtkinter.CTkFrame(master=fr.frame_right)
+fr.history_frame = customtkinter.CTkFrame(master=fr.frame_right)
+fr.settings_frame = customtkinter.CTkFrame(master=fr.frame_right)
 
-fr.frame_info.rowconfigure(0, weight=1)
-fr.frame_info.columnconfigure(0, weight=1)
+#låmber de forskellige frames sammen i en boks
+for fr.frame_box in (fr.fetcher_frame,
+                     fr.generator_frame,
+                     fr.reader_frame,
+                     fr.history_frame,
+                     fr.settings_frame):
+    fr.frame_box.grid(row=0, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
 
-fr.label_info_1 = customtkinter.CTkLabel(master=fr.frame_info,
+fr.frame_box.rowconfigure(0, weight=1)
+fr.frame_box.columnconfigure(0, weight=1)
+
+#Fetcher Frame + kode
+fr.fetcher_frame_info = customtkinter.CTkLabel(fr.fetcher_frame,
+                                                text="Fetcher",
+                                                text_font=("times 35", 48),
+                                                height=1260,
+                                                corner_radius=6,
+                                                fg_color=("white", "gray38"),
+                                                justify=tkinter.LEFT)
+fr.fetcher_frame_info.pack(fill='both', expand=True)
+#fr.fetcher_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+
+#Generator Frame + kode
+fr.generator_frame_info = customtkinter.CTkLabel(fr.generator_frame,
+                                                text="Generator",
+                                                text_font=("times 35", 48),
+                                                height=1260,
+                                                corner_radius=6,
+                                                fg_color=("white", "gray38"),
+                                                justify=tkinter.LEFT)
+fr.generator_frame_info.pack(fill='both', expand=True)
+#fr.generator_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+
+#Reader frame + kode
+fr.reader_frame_info = customtkinter.CTkLabel(fr.reader_frame,
+                                                text="Reader",
+                                                text_font=("times 35", 48),
+                                                height=1260,
+                                                corner_radius=6,
+                                                fg_color=("white", "gray38"),
+                                                justify=tkinter.LEFT)
+fr.reader_frame_info.pack(fill='both', expand=True)
+#fr.reafer_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+
+#History frame + kode
+fr.history_frame_info = customtkinter.CTkLabel(fr.history_frame,
+                                                text="History",
+                                                text_font=("times 35", 48),
+                                                height=1260,
+                                                corner_radius=6,
+                                                fg_color=("white", "gray38"),
+                                                justify=tkinter.LEFT)
+fr.history_frame_info.pack(fill='both', expand=True)
+#fr.history_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+
+#Settings frame + kode
+fr.settings_frame_info = customtkinter.CTkLabel(fr.settings_frame,
+                                                text="Settings",
+                                                text_font=("times 35", 48),
+                                                height=1260,
+                                                corner_radius=6,
+                                                fg_color=("white", "gray38"),
+                                                justify=tkinter.LEFT)
+fr.settings_frame_info.pack(fill='both', expand=True)
+#fr.settings_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+
+
+#Den første Frame der visses i højre side af vinduet når du starter FR
+fr.first_frame = customtkinter.CTkFrame(master=fr.frame_right)
+fr.first_frame.grid(row=0, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
+
+fr.first_frame.rowconfigure(0, weight=1)
+fr.first_frame.columnconfigure(0, weight=1)
+
+#Styrer hvar der visses i fr.first_frame
+fr.first_frame_info = customtkinter.CTkLabel(master=fr.first_frame,
                                            text="Place Holder",
                                            text_font=("Roboto Medium", 48),
                                            height=1260,
                                            corner_radius=6,
                                            fg_color=("white", "gray38"),
                                            justify=tkinter.LEFT)
-fr.label_info_1.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+fr.first_frame_info.pack(fill='both', expand=True)
+#fr.first_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
 
 #=============================================================================================
 #Skal slutte med main loop (so don't you dare put anything after this!)
