@@ -1,13 +1,12 @@
-def linkTester():
+def linkTester(url):
     from bs4 import BeautifulSoup
     import requests
     import re
 
 
     # Lader brugere insert den url de ønsker
-    ff_url = input("Insert FimFiction Link Here: ")
-    r = requests.get(ff_url, allow_redirects=True)
-    soup = BeautifulSoup(r.text)
+    r = requests.get(url, allow_redirects=True,)
+    soup = BeautifulSoup(r.text, features="html.parser")
     txt_links = lambda tag: (getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs and 'txt' in tag.get_text().lower())
     results = soup.find_all(txt_links)
 
@@ -19,6 +18,8 @@ def linkTester():
         i += 1
     print(results)
     return(results)
+
+linkTester(https://www.fimfiction.net/story/164364/how-to-court-alicorns-a-humans-guide)
 
 
 # Side hvor links til alle kapitlerne er og skal findes
