@@ -33,6 +33,7 @@ def nameChecker(snippetList, universe, args=None):
                 if result != None:
                     print("Ukendt øgenavn: "+result["Name"])
                     print("Skal denne gemmes som en ny karakter? (J/N):")
+                    breakFlag = False
                     while breakFlag == False:
                         userInput = str(input())
                         if userInput == "J":
