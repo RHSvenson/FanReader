@@ -7,31 +7,34 @@
 # 1 stk. univers
 # Valgfrie argumenter
 # TODO: Tilføj støtte til crossovers (flere universer)
-def nameChecker(snippetList, universe, args=None):
+def nameChecker(snippetList, universe, args=""):
     import json
     import re
     chapterActors = []
+    breakFlag = False
     with open ("Data/knownCharacters/"+universe+".json", "r") as characters:
         characterList = json.load(characters)
         for snippet in snippetList:
             # Brug JSON databasen til at scanne igennem kendte navne
-            for characterEntry in characterList:
+            for characterEntry, characterInfo in characterList.items():
                 # Kig igennem primære navne
-                for characterName in characterEntry["Names"]:
-                    result = re.search("characterName", snippet[1])
+                for characterName in characterInfo["Names"]:
+                    result = re.search(characterName, snippet[1])
                     if result != None:
                         breakFlag = True
-                        chapterActors.append(result)
+                        print(characterEntry)
+                        chapterActors.append(characterEntry)
                         break
                 if breakFlag == True:
                     break
                 # Hvis der ikke blev fundet noget, så tjek lige efter typiske øgenavnsindikatorer.
                 # Dette kan slås fra, da den kan give mange returns grundet stednavne.
             if "NoNewNames" not in args:
-                result = re.search("(?<= )([A-Z][a-z]+ ?){1,5}", snippet[1])
+                result = re.findall("(?<= )([A-Z][a-z]+ ?){1,5}", snippet[1])
+                print(result)
                 # Spørg brugeren om navnet kan passe
                 if result != None:
-                    print("Ukendt øgenavn: "+result["Name"])
+                    print("Ukendt øgenavn: "+result)
                     print("Skal denne gemmes som en ny karakter? (J/N):")
                     breakFlag = False
                     while breakFlag == False:
