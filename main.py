@@ -90,8 +90,13 @@ def click():
 
 #Ændre frame vinduet i højre side af FR
 def show_frame(frame):
-    print("Clicked Button")
+    print("Button Clicked")
     frame.tkraise()
+
+#Tager den url som man intaster og inserter den i chapter_list
+def fetch_chapters():
+    chapter_list.insert(chapter_list.size(),fr.url_entry.get())
+    print("Button Clicked! The Given URL Is "+fr.url_entry.get())
 
 #Lukker FR
 def close_fr():
@@ -201,15 +206,38 @@ fr.frame_box.rowconfigure(0, weight=1)
 fr.frame_box.columnconfigure(0, weight=1)
 
 #Styrer hvar der visses i fr.fetcher_frame
-fr.fetcher_frame_info = customtkinter.CTkLabel(fr.fetcher_frame,
-                                                text="Fetcher",
-                                                text_font=("times 35", 48),
-                                                height=1260,
-                                                corner_radius=6,
-                                                fg_color=("white", "green"),
-                                                justify=tkinter.LEFT)
-fr.fetcher_frame_info.pack(fill='both', expand=True)
-#fr.fetcher_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+#URL entry boks
+fr.url_entry = customtkinter.CTkEntry(master=fr.fetcher_frame,
+                                    width=120,
+                                    placeholder_text="Enter URL here")
+fr.url_entry.grid(row=0, column=0, columnspan=2, pady=20, padx=20, sticky="we")
+#Fetch URL knap
+fr.fetcher_b_url = customtkinter.CTkButton(master=fr.fetcher_frame,
+                                            text="Fetch URL",
+                                            text_font=("times 35", 12),
+                                            fg_color=("purple"),
+                                            command=fetch_chapters)
+fr.fetcher_b_url.grid(row=0, column=2, pady=10, padx=20, sticky="w")
+#List Box
+chapter_list = Listbox(master=fr.fetcher_frame,
+                   bg="purple",
+                   font=("times 35", 12))
+chapter_list.grid(row=2, column=0, pady=10, padx=20, sticky="nsew")
+chapter_list.config(height=chapter_list.size())
+#Save Individual Chapter knap
+fr.fetcher_b_sic = customtkinter.CTkButton(master=fr.fetcher_frame,
+                                            text="Save Individual Chapter",
+                                            text_font=("times 35", 12),
+                                            fg_color=("purple"),
+                                            command=click)
+fr.fetcher_b_sic.grid(row=7, column=0, pady=10, padx=20, sticky="w")
+#Save All Chapters knap
+fr.fetcher_b_sac = customtkinter.CTkButton(master=fr.fetcher_frame,
+                                            text="Save All Chapters",
+                                            text_font=("times 35", 12),
+                                            fg_color=("purple"),
+                                            command=click)
+fr.fetcher_b_sac.grid(row=7, column=1, pady=10, padx=20, sticky="w")
 
 #Styrer hvar der visses i fr.generator_frame
 fr.generator_frame_info = customtkinter.CTkLabel(fr.generator_frame,
@@ -254,6 +282,24 @@ fr.settings_frame_info = customtkinter.CTkLabel(fr.settings_frame,
                                                 justify=tkinter.LEFT)
 fr.settings_frame_info.pack(fill='both', expand=True)
 #fr.settings_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
+#valg1 test
+fr.settings_Server = customtkinter.CTkLabel(fr.settings_frame_info,
+                         text="Server settings",
+                         text_font=("times 35", 16),
+                         height=36,
+                         corner_radius=6,
+                         fg_color=("white", "black"),
+                         justify=tkinter.LEFT)
+fr.settings_Server.grid(column=0, row=1, sticky="nwe", padx=15, pady=15)
+#valg2 test
+fr.settings_Reader = customtkinter.CTkLabel(fr.settings_frame_info,
+                         text="Reader choices",
+                         text_font=("times 35", 16),
+                         height=36,
+                         corner_radius=6,
+                         fg_color=("white", "black"),
+                         justify=tkinter.LEFT)
+fr.settings_Reader.grid(column=0, row=2, sticky="nwe", padx=15, pady=15)
 
 #Sørger for at fr.first_frame faktisk bliver vist når FR starter op
 show_frame(fr.first_frame)
