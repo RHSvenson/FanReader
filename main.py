@@ -14,6 +14,7 @@ from tkinter import filedialog as fd
 #from utils.LinkTester import LinkTester
 import os, glob
 from director import director
+from DataTools.chapterFetcher import *
 
 #=============================================================================================
 #Bavgrunds tema
@@ -95,7 +96,9 @@ def show_frame(frame):
 
 #Tager den url som man intaster og inserter den i chapter_list
 def fetch_chapters():
-    chapter_list.insert(chapter_list.size(),fr.url_entry.get())
+    chapters = chapterFetcher(fr.url_entry.get())
+    for chapter in chapters:
+        chapter_list.insert(chapter_list.size(),chapter)
     print("Button Clicked! The Given URL Is "+fr.url_entry.get())
 
 #Lukker FR
