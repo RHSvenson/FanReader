@@ -13,8 +13,9 @@ def chapterFetcher(url):
 
     results = re.findall("\/chapters\/download\/\d+\/txt",str(results))
     i = 0
-    while i <= 2:
-        results[i] = "https://www.fimfiction.net"+results[i]
+    chapters = {}
+    for result in results:
+        chapters[f"Chapter {i+1}"] = "https://www.fimfiction.net"+result
         i += 1
-    print(results)
-    return(results)
+    print(chapters)
+    return(chapters)
