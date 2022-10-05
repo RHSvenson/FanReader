@@ -24,12 +24,11 @@ def director():
             break
     
     # Enormt vigtig variabel. Ideelt vil denne hentes fra en API værdi, men kan alternativt manuelt udpejes.
-    from utils.Cleaners import charTagsGen
-    charTagsPath = "exampletags.txt"
-    charTags = charTagsGen(charTagsPath)
-
-    # Se hvilke karakterer vi har at gøre med i kapitlet.
-    chapterActors = nameChecker(snippetList="snippetDictionary", charTags=charTags, args=None)
+    from Checkers.nameChecker import nameChecker
+    charTags = nameChecker(
+        snippetList=snippetDictionary,
+        universe = MLPFiM,
+    )
 
     narrator = "Narrator" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson
 
@@ -38,13 +37,18 @@ def director():
     lineList = []
 
     # Loopet benytter en i variabel som tæller.
+    # Dette er LOOPET. Her sker næsten alt.
     i = 0
     for snippet in snippetDictionary:
 
         # Alle snippets gennemgår alle checks.
 
         # saidChecker er altid først, da den er mest pålidelig. De andre bygger videre på dens return.
-        phraseCache = saidChecker(snippet = snippet, dictionary="Ordbøger/saidSynonyms.txt", charTags=charTags)
+        phraseCache = saidChecker(
+            snippet = snippet, 
+            dictionary = "Ordbøger/saidSynonyms.txt", 
+            charTags = charTags
+        )
 
         if i < 4:
             phraseCache = phraseCache
