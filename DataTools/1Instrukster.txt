@@ -1,0 +1,11 @@
+Denne folder indeholder filer som interaggerer med en ud af to ting:
+
+1:
+Programmer som indhenter data fra vores remote target (host hjemmeside).
+Disse navngives efter den data de behandler, samt fetcher.
+Altså, "Fetcher" funktioner interaggerer med internettet.
+
+2:
+Programmer som indhenter data fra den lokale database og historik.
+Disse navngives efter den data de behandler, samt retriever.
+Altså, "Retriever" funktioner interaggerer med lokale filer.
