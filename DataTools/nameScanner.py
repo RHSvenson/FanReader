@@ -37,26 +37,43 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
     # for at kigge efter øgenavne. Dette kræver meget brugeinput, og burde derfor nok
     # advares om inden man trykker start.
     breakFlag = False
+    repeatList = []
+    counter = 0
     if "noNewNames" not in args:
         for snippet in snippetList:
             breakFlag = False
-            resultList = re.findall(r"(?:(?<!\.\ )(?<!\r)(?<!\n)(?<!\"))([A-Z][a-z]{1,15}(?: ?)){1,5}", snippet[1])
+            counter = counter+1
+            resultList = re.findall(r"(?<=[a-z]|[A-Z|\"|\,])(?: )(([A-Z][a-z]{1,15} ?){1,5})", snippet[1])
+
             print(resultList)
-            if resultList != None:
-                for result in resultList:
+            if resultList != []:
+                for x in resultList:
+                    # overfør resultatet fra tuple konstrukt fra re.findall
+                    result = x[0]
+                    # Fjerne overskydende mellemrum for enden og i starten af string
+                    if result[0] == " ":
+                        result = result[1:]
+                    if result[-1] == " ":
+                        result = result[:-1]
                     # Afbryd hvis vi kender navnet i forvejen.
                     for entry in charDict:
                         if breakFlag == True:
                             break
+                        # Scanner efter kendte navne i det overordnede dictionary
                         for name in charDict[entry]["Names"]:
                             if re.search(name, result) != None:
+                                breakFlag = True
+                                break
+                        # Scanner efter ord som vi allerede har sagt nej til før.
+                        for repeat in repeatList:
+                            if re.search(repeat, result[0]) != None:
                                 breakFlag = True
                                 break
                     if breakFlag == True:
                         break
                     # Kontroller efter gyldigt input
                     # TODO: Erstat denne med gui responser
-                    print("Ukendt øgenavn fundet:"+str(result))
+                    print("Ukendt øgenavn fundet: \""+str(result)+"\" i linje "+str(counter))
                     print("Skal denne gemmes? (J/N):")
                     saveResponse = str(input())
                     while re.search("j|J|n|N", saveResponse) == None:
@@ -86,12 +103,18 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                                 genderResponse = "Female"
                             # Nu har vi alt hvad vi skal bruge indtil videre, så vi føjer det hele
                             # til charDict.
-                            charDict[result]: {
+                            charDict[str(result)] = {
                                 "Names": [result],
                                 "Addresses": [],
                                 "Gender": genderResponse,
                                 "NarrationType": "Normal"
                             }
+                            print(charDict)
+                    else:
+                        # Tilføj entry til en liste over ting som ikke skal spørges om igen.
+                        repeatList.append(result)
+                        print(repeatList)
+
 
                         
 
