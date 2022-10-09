@@ -24,10 +24,10 @@ def director():
             break
     
     # Enormt vigtig variabel. Ideelt vil denne hentes fra en API værdi, men kan alternativt manuelt udpejes.
-    from Checkers.nameChecker import nameChecker
-    charTags = nameChecker(
+    from DataTools.nameScanner import nameScanner
+    charTags = nameScanner(
         snippetList=snippetDictionary,
-        universe = MLPFiM,
+        universe = "MLPFiM"
     )
 
     narrator = "Narrator" # Dette skal slettes en dag når vi får skabt prompten til at vælge hovedperson

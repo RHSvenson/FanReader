@@ -66,7 +66,9 @@ def snippeter(file,args):
                         print("Fejl, ukendt karakter:", story_file[charCounterTotal])
                     charCounterTotal += 1
 
-
+        # Slet de første 5 snippets, da disse næsten altid er titelkort.
+        for x in range(4):
+            snippetDictionary.pop(0)
 
         if args == "debugmode":
             print(snippetDictionary)
