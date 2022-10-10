@@ -44,8 +44,6 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
             breakFlag = False
             counter = counter+1
             resultList = re.findall(r"(?<=[a-z]|[A-Z|\"|\,])(?: )(([A-Z][a-z]{1,15} ?){1,5})", snippet[1])
-
-            print(resultList)
             if resultList != []:
                 for x in resultList:
                     # overfør resultatet fra tuple konstrukt fra re.findall
@@ -66,7 +64,7 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                                 break
                         # Scanner efter ord som vi allerede har sagt nej til før.
                         for repeat in repeatList:
-                            if re.search(repeat, result[0]) != None:
+                            if re.search(repeat, result) != None:
                                 breakFlag = True
                                 break
                     if breakFlag == True:
@@ -109,11 +107,9 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                                 "Gender": genderResponse,
                                 "NarrationType": "Normal"
                             }
-                            print(charDict)
                     else:
                         # Tilføj entry til en liste over ting som ikke skal spørges om igen.
                         repeatList.append(result)
-                        print(repeatList)
 
 
                         
