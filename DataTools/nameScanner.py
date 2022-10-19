@@ -77,11 +77,14 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                     while re.search("j|J|n|N", saveResponse) == None:
                         print("Ugyldigt input, angiv J eller N:")
                         saveResponse = str(input())
+
                     # Loop til ja eller nej slut
                     if re.search("j|J", saveResponse) != None:
                         # Findes karakteren allerede?
                         print("Er dette en titel til en eksisterende karakter? (J/N):")
                         existingResponse = str(input())
+
+                        # Loop til at fange forkerte input.
                         while re.search("j|J|n|N", saveResponse) == None:
                             print("Ugyldigt input, angiv J eller N:")
                             existingResponse = str(input())
@@ -89,24 +92,9 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                             # TODO: Få guien til at præsentere en liste man kan vælge fra her.
                             print("Ikke implementeret endnu")
                         elif re.search("n|N", existingResponse) != None:
-                            # TODO: Føj dette til en funktion så vi ikke nester så meget.
-                            print("Er karakteren en mand eller kvinde? (M/K):")
-                            genderResponse = str(input())
-                            while re.search("m|M|k|K", genderResponse) == None:
-                                print("Ugyldigt input, angiv m eller k:")
-                                genderResponse = str(input())
-                            if re.search("m|M", genderResponse) != None:
-                                genderResponse = "Male"
-                            elif re.search("k|K", genderResponse) != None:
-                                genderResponse = "Female"
-                            # Nu har vi alt hvad vi skal bruge indtil videre, så vi føjer det hele
-                            # til charDict.
-                            charDict[str(result)] = {
-                                "Names": [result],
-                                "Addresses": [],
-                                "Gender": genderResponse,
-                                "NarrationType": "Normal"
-                            }
+                            newCharEntry(
+                                Names = result
+                            )
                     else:
                         # Tilføj entry til en liste over ting som ikke skal spørges om igen.
                         repeatList.append(result)
@@ -119,3 +107,24 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
 
     print(charDict)
     return charDict
+
+def newCharEntry(Names):
+    import re
+    print("Er karakteren en mand eller kvinde? (M/K):")
+    genderResponse = str(input())
+    while re.search("m|M|k|K", genderResponse) == None:
+        print("Ugyldigt input, angiv m eller k:")
+        genderResponse = str(input())
+    if re.search("m|M", genderResponse) != None:
+        genderResponse = "Male"
+    elif re.search("k|K", genderResponse) != None:
+        genderResponse = "Female"
+    # Nu har vi alt hvad vi skal bruge indtil videre, så vi føjer det hele
+    # til charDict.
+    
+    charDict[str(Names)] = {
+        "Names": [Names],
+        "Addresses": [],
+        "Gender": genderResponse,
+        "NarrationType": "Normal"
+    }
