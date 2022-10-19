@@ -26,7 +26,7 @@ def saidChecker(snippet, dictionary, charTags):
                     phraseCache = {
                         "Character": None,
                         "Sentence": snippet[1],
-                        "Parameters": ("saidbefore", characterName)
+                        "Parameters": ("saidafter", characterName)
                     }
                     breakFlag = True
                     break
