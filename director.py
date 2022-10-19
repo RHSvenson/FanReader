@@ -9,6 +9,7 @@ def director():
     from snippeter import snippeter
     #from utils.Cleaners import charTagsGen
     from Checkers.saidChecker import saidChecker
+    from Checkers.endFocusChecker import endFocusChecker
 
 
     bøn = "I Faderen og Sønnen, og Helligåndens navn, Amen. Herre, den menneskelige intelligens kan aldrig sammenlignes med din, og endnu mindre kan de ringe efterligninger af intelligens vi producerer på vor maskiner. Alligevel beder jeg dig om at velsigne os med din skabelseskløgt, så vi kan producere et godt produkt til din ære. Ved Kristus vor Herre, amen."
@@ -69,10 +70,21 @@ def director():
                     lineList[i-1]["Sentence"],
                     lineList[i-1]["Parameters"]
                 )
-
-
         
-        print(phraseCache)
+        # Efter vi har brugt saidCheckers parametre, videregiver vi phrasen til endFocusChecker.
+        # Dette er fordi mange andre funktioner bedre kan benytte endFocus' værdier.
+
+        phraseCache = endFocusChecker(
+            loadedPhrase = phraseCache,
+            charTags = charTags,
+            dictionary = "Ordbøger/saidSynonyms.txt"
+        )
+
+        # endFocus indikatorer gives videre til exchangeChecker.
+
+
+        # Til sidst tildeler vi narrator til narration stykker. Vi skal stadig bruge
+        # parameters herfra, derfor kører de stadig igennem hele maskineriet.
         if snippet[0] == 0:
             phraseCache = {
                 "Character": narrator, 
@@ -82,7 +94,7 @@ def director():
         ## Indsættelse til sidst
         lineList.append(phraseCache)
         
-
+        # Tæller variabel, til at holde styr på hvor vi er i listen.
         i += 1
 
             
