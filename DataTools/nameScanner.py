@@ -99,7 +99,7 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                                     print("Ugyldigt input, prøv igen.")
                                 userInput = str(input())
                                 for entry in charDict:
-                                    if entry.lower == userInput.lower:
+                                    if entry.lower() == userInput.lower():
                                         charDict[entry]["Addresses"].append(result)
                                         breakFlag = True
                                         print("Title added.")
