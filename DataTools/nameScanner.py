@@ -92,9 +92,7 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                             # TODO: Få guien til at præsentere en liste man kan vælge fra her.
                             print("Ikke implementeret endnu")
                         elif re.search("n|N", existingResponse) != None:
-                            newCharEntry(
-                                Names = result
-                            )
+                            charDict[result] = newCharEntry(result)
                     else:
                         # Tilføj entry til en liste over ting som ikke skal spørges om igen.
                         repeatList.append(result)
@@ -122,9 +120,10 @@ def newCharEntry(Names):
     # Nu har vi alt hvad vi skal bruge indtil videre, så vi føjer det hele
     # til charDict.
     
-    charDict[str(Names)] = {
+    newEntry = {
         "Names": [Names],
         "Addresses": [],
         "Gender": genderResponse,
         "NarrationType": "Normal"
     }
+    return newEntry

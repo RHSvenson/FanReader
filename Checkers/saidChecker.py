@@ -9,53 +9,54 @@ def saidChecker(snippet, dictionary, charTags):
     with open(dictionary) as file:
         synonyms = file.read()
         saidSynonyms = re.findall(pattern="\w+",string=synonyms)
+    phraseCache = {
+        "Character": None,
+        "Sentence": snippet[1],
+        "Parameters": (None, None)
+    }
     # Start af loopsekvense. Disse leder tilsammen igennem alle navne og synonymer.
     for synonym in saidSynonyms:
-        for characterEntry in charTags:~
+        for characterEntry in charTags:
             for characterName in charTags[characterEntry]["Names"]:
                 # Slutning af loopsekvens.
                 if breakFlag == True:
                     break
                 if re.search(characterName+" "+synonym, snippet[1]) != None:
                     phraseCache = {
-                        "Character": None,
-                        "Sentence": snippet[1],
-                        "Parameters": ("saidafter", characterName)
+                        "Parameters": ("characterafter", characterName)
                     }
                     breakFlag = True
                     break
                 elif re.search(synonym+" "+characterName, snippet[1]) != None:
                     phraseCache = {
-                        "Character": None,
-                        "Sentence": snippet[1],
-                        "Parameters": ("saidafter", characterName)
+                        "Parameters": ("characterafter", characterName)
                     }
                     breakFlag = True
                     break
                 elif re.search("I "+synonym, snippet[1]) != None and snippet[0] == 0:
                     phraseCache = {
-                        "Character": None,
-                        "Sentence": snippet[1],
-                        "Parameters": ("saidafter", "main")
+                        "Parameters": ("characterafter", "main")
                     }
                     breakFlag = True
                     break
                 elif re.search("( he )|( He )"+synonym, snippet[1]) != None and snippet[0] == 0:
                     phraseCache = {
-                        "Character": None, 
-                        "Sentence": snippet[1], 
-                        "Parameters": ("saidafter", "lastmale")
+                        "Parameters": ("characterafter", "lastmale")
                     }
                     breakFlag = True
                     break
                 elif re.search("( she )|( She )"+synonym, snippet[1]) != None and snippet[0] == 0:
                     phraseCache = {
-                        "Character": None,
-                        "Sentence": snippet[1],
-                        "Parameters": ("saidafter", "lastfemale")
+                        "Parameters": ("pronounafter", "lastfemale")
                     }
                     breakFlag = True
                     break
+                # Last resort, indikerer at vi har et synonym match men ingen karakter.
+                # Bruges af director til at kalde på addresschecker.
+                elif re.search(synonym, snippet[1]) != None and snippet[0] == 0:
+                    phraseCache = {
+                        "Parameters": ("addressafter", None)
+                    }
                 else:
                     phraseCache = {
                         "Character": None, 

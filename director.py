@@ -8,8 +8,6 @@ def director():
     from unicodedata import name
     from snippeter import snippeter
     #from utils.Cleaners import charTagsGen
-    from Checkers.saidChecker import saidChecker
-    from Checkers.endFocusChecker import endFocusChecker
 
 
     bøn = "I Faderen og Sønnen, og Helligåndens navn, Amen. Herre, den menneskelige intelligens kan aldrig sammenlignes med din, og endnu mindre kan de ringe efterligninger af intelligens vi producerer på vor maskiner. Alligevel beder jeg dig om at velsigne os med din skabelseskløgt, så vi kan producere et godt produkt til din ære. Ved Kristus vor Herre, amen."
@@ -40,6 +38,8 @@ def director():
     # Loopet benytter en i variabel som tæller.
     # Dette er LOOPET. Her sker næsten alt.
     i = 0
+    lastChars = []
+    from Checkers.saidChecker import saidChecker
     for snippet in snippetDictionary:
 
         # Alle snippets gennemgår alle checks.
@@ -53,32 +53,56 @@ def director():
 
         if i < 4:
             phraseCache = phraseCache
-        # Hvis der var en saidBefore i tidligere sætning, så springer vi alt det her over, da vi allerede kender svaret.
-        elif lineList[i-1]["Parameters"] != None and lineList[i-1]["Parameters"][0] == "saidbefore":
-            phraseCache = {
-                # lineList indexet her henter karakterstykket fra Parameter indexet fra sidste phraseCache.
-                "Character": lineList[i-1]["Parameters"][1],
-                "Sentence": phraseCache["Sentence"],
-                "Parameters": phraseCache["Parameters"]
-            }
+        # Kontroller efter saidafter, hvis den er positiv og der er en karakter forsynet, så ret
+        # tidligere sætning til dette.
+        # saidafter værdier er alle ting som characterafter, og indikerer at der var en direkte
+        # sætning der siger hvem der taler, såsom "She said".
         elif phraseCache["Parameters"] != None:
-            if phraseCache["Parameters"][0] == "saidafter":
-                # Hvis der var en saidAfter, så sæt tidligere linje til (karakter, samme linje, samme data)
+            # Characterafter er den mest sikre, og her kan vi bare rette til den fundne character værdi.
+            if phraseCache["Parameters"][0] == "characterafter":
                 lineList[i-1] = (
+                    # Parameters[1] er den fundne karakters navn.
                     phraseCache["Parameters"][1],
-                    # lineList indexene her referer til sætningne inden nuværende i loopet.
                     lineList[i-1]["Sentence"],
                     lineList[i-1]["Parameters"]
                 )
+                # Det er vigtigt for andre funktioner at vi lige gemmer hvem den sidstnævnte karakter er.
+                # Vi finder entriet fra chartags så vi har alt data ved hånden.
+                # Vi gemmer de sidste 3 karaktere, ikke mere.
+                if lastChars != None:
+                    lastChars[2] = lastChars[1]
+                    lastChars[1] = lastChars[0]
+                lastChars[0] = charTags[phraseCache["Parameters"][1]]
+            # Efter det er pronounafter, som er let at spotte og også ret sikker.
+            # Denne vil næsten altid referer til den sidst-nævnte karakter af det køn, så dette
+            # går vi også ud fra.
+            elif phraseCache["Parameters"][0] == "pronounafter":
+                if lastChars == None:
+                    print("ERROR: No characters encountered, cannot utilize pronounafter.")
+                else:
+                    # Loop igennem vores sidstnævnte karakterer, tag den første med rigtig køn
+                    for character in lastChars:
+                        if charTags[character]["Gender"] == "Male" and phraseCache["Parameters"][1] == "lastmale":
+                            lineList[i-1][0] = character
+                            break
+                        elif charTags[character]["Gender"] == "Female" and phraseCache["Parameters"][1] == "lastfemale":
+                            lineList[i-1][0] = character
+                            break
+            elif phraseCache["Parameters"][0] == "addressafter":
+                if lastChars == None:
+                    print("ERROR: No characters encountered, cannot utilize addresafter.")
+                    # TODO: Tilføj addresschecker
+
+
+                    
+            
+
+        
         
         # Efter vi har brugt saidCheckers parametre, videregiver vi phrasen til endFocusChecker.
         # Dette er fordi mange andre funktioner bedre kan benytte endFocus' værdier.
 
-        phraseCache = endFocusChecker(
-            loadedPhrase = phraseCache,
-            charTags = charTags,
-            dictionary = "Ordbøger/saidSynonyms.txt"
-        )
+        # TODO: Tilføj endFocusChecker
 
         # endFocus indikatorer gives videre til exchangeChecker.
 
