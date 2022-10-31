@@ -89,8 +89,24 @@ def nameScanner(snippetList="snippetList", universe="", args="fullScan"):
                             print("Ugyldigt input, angiv J eller N:")
                             existingResponse = str(input())
                         if re.search("j|J", existingResponse) != None:
-                            # TODO: Få guien til at præsentere en liste man kan vælge fra her.
-                            print("Ikke implementeret endnu")
+                            breakFlag = False
+                            firstLoop = True
+                            for entry in charDict:
+                                print(entry)
+                            print("Indtast venligst en af ovenstående karakterer som titlen passer til.")
+                            while breakFlag == False:
+                                if firstLoop == False:
+                                    print("Ugyldigt input, prøv igen.")
+                                userInput = str(input())
+                                for entry in charDict:
+                                    if entry.lower == userInput.lower:
+                                        charDict[entry]["Addresses"].append(result)
+                                        breakFlag = True
+                                        print("Title added.")
+                                        break
+                                firstLoop = False
+                                
+                            
                         elif re.search("n|N", existingResponse) != None:
                             charDict[result] = newCharEntry(result)
                     else:
