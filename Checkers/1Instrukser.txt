@@ -6,3 +6,14 @@ Stringen vil være i form af en hovedpersonsindikator ("Main"), en højtlæser-i
 eller en karakterindikator, f.eks. "Adam".
 
 False returneres hvis funktionen ikke finder nogen match.
+
+Ofte anvendte værdier:
+
+Snippet: En liste med to værdier. [0] indikerer om det er narration eller dialogue, og [1] er sætningen.
+Phrase: Et dictionary med 3 entries, ["Character"], ["Sentence"] og ["Parameters"]. Disse giver sig selv.
+-- Parameters indeholder værdier fra de diverse checkers som de skal bruge til at snakke sammen med director.
+-- Disse varierer meget, men indeholder altid funktionnavnet så du kan se hvor de kommer fra.
+-- De to første værdier er altid strings, parameters er som regel en tuple.
+
+charTags: Liste fra nameScanner der indeholder de navne som er i brug i den nuværende historie.
+-- Denne er altid et dictionary, med et entry per karakter. For mere har så se json instrukserne.

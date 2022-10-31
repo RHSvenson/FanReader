@@ -3,6 +3,7 @@
 
 def endFocusChecker(loadedPhrase=phraseCache, charTags=charTags):
     import re
+    breakflag = False
     for characterEntry in charTags:
         if breakFlag == True:
             break
@@ -20,6 +21,7 @@ def endFocusChecker(loadedPhrase=phraseCache, charTags=charTags):
                     # Og indsæt et parameter for at indikere den fundne karakter
                     "Parameters": ("endfocus", characterName)
                 }
+                breakFlag = True
 
             # Ellers så giv bare phrasen tilbage uændret
             else:

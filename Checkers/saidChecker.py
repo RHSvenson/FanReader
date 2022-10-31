@@ -9,9 +9,11 @@ def saidChecker(snippet, dictionary, charTags):
     with open(dictionary) as file:
         synonyms = file.read()
         saidSynonyms = re.findall(pattern="\w+",string=synonyms)
+    # Start af loopsekvense. Disse leder tilsammen igennem alle navne og synonymer.
     for synonym in saidSynonyms:
-        for characterEntry in charTags:
+        for characterEntry in charTags:~
             for characterName in charTags[characterEntry]["Names"]:
+                # Slutning af loopsekvens.
                 if breakFlag == True:
                     break
                 if re.search(characterName+" "+synonym, snippet[1]) != None:
