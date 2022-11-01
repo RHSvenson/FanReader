@@ -2,8 +2,9 @@ from tkinter import *
 from tkinter import filedialog
 
 def fileExplorer():
-    filename = filedialog.askopenfilename(
-        initialdir = "/",
+    global fileName
+    fileName = filedialog.askopenfilename(
+        initialdir = "~",
         title = "Select a file",
         filetypes = (
             ("Text files",
@@ -13,4 +14,4 @@ def fileExplorer():
         )
     )
 
-    return filename
+    return fileName

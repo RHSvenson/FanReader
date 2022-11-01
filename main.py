@@ -245,14 +245,26 @@ fr.fetcher_b_sac = customtkinter.CTkButton(master=fr.fetcher_frame,
 fr.fetcher_b_sac.grid(row=7, column=1, pady=10, padx=20, sticky="w")
 
 #Styrer hvar der visses i fr.generator_frame
-fr.generator_frame_info = customtkinter.CTkLabel(fr.generator_frame,
-                                                text="Generator",
-                                                text_font=("times 35", 48),
-                                                height=1260,
-                                                corner_radius=6,
-                                                fg_color=("white", "blue"),
-                                                justify=tkinter.LEFT)
-fr.generator_frame_info.pack(fill='both', expand=True)
+from GUI.fileExplorer import fileExplorer
+
+fr.generator_manual_button = customtkinter.CTkButton(
+    master = fr.generator_frame,
+    command = lambda: fileExplorer(),
+    text_font=("times 35", 12),
+    fg_color=("purple"),
+    text = "Manual (Browse Files)"
+)
+fr.generator_manual_button.grid(row = 0, column = 0, pady = 10, padx = 20, sticky = "w")
+
+
+#fr.generator_frame_info = customtkinter.CTkLabel(fr.generator_frame,
+#                                                text="Generator",
+#                                                text_font=("times 35", 48),
+##                                                height=1260,
+#                                               corner_radius=6,
+#                                                fg_color=("white", "blue"),
+#                                                justify=tkinter.LEFT)
+#fr.generator_frame_info.pack(fill='both', expand=True)
 #fr.generator_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
 
 #Styrer hvar der visses i fr.reader_frame
