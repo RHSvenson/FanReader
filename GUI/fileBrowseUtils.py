@@ -14,4 +14,4 @@ def fileExplorer():
         )
     )
 
-    return fileName
+    generator_manual_file_display.insert("0.0", filename)

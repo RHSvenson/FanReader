@@ -245,7 +245,7 @@ fr.fetcher_b_sac = customtkinter.CTkButton(master=fr.fetcher_frame,
 fr.fetcher_b_sac.grid(row=7, column=1, pady=10, padx=20, sticky="w")
 
 #Styrer hvar der visses i fr.generator_frame
-from GUI.fileExplorer import fileExplorer
+from GUI.fileBrowseUtils import fileExplorer
 
 fr.generator_manual_button = customtkinter.CTkButton(
     master = fr.generator_frame,
@@ -255,6 +255,17 @@ fr.generator_manual_button = customtkinter.CTkButton(
     text = "Manual (Browse Files)"
 )
 fr.generator_manual_button.grid(row = 0, column = 0, pady = 10, padx = 20, sticky = "w")
+
+fr.generator_manual_file_display = customtkinter.CTkTextbox(
+    master = fr.generator_frame,
+    text_font = ("times 35", 12),
+    fg_color = ("purple"),
+)
+
+fr.generator_manual_file_display.insert("0.0", "No file selected.")
+fr.generator_manual_file_display.configure(state="disabled")
+
+fr.generator_manual_file_display.grid(row = 1, column = 0, pady = 10, padx = 20, sticky = "w")
 
 
 #fr.generator_frame_info = customtkinter.CTkLabel(fr.generator_frame,
