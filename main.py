@@ -88,7 +88,7 @@ def close_fr():
 
 #FanReader Txet og Logo
 text_var = tkinter.StringVar(value="FanReader")
-fr.label_1 = customtkinter.CTkLabel(master=fr.frame_left,
+fr.sidebar_title = customtkinter.CTkLabel(master=fr.frame_left,
                                image=unicon,
                                textvariable=text_var,
                                compound='top',
@@ -96,53 +96,64 @@ fr.label_1 = customtkinter.CTkLabel(master=fr.frame_left,
                                width=84,
                                height=84,
                                corner_radius=8)
-fr.label_1.grid(row=1, column=0, pady=10, padx=10)
+fr.sidebar_title.grid(row=1, column=0, pady=10, padx=10)
 
 #=============================================================================================
 #Venstre side knapper(s)
 #=============================================================================================
 
 #Fetcher knap
-fr.button_1 = customtkinter.CTkButton(master=fr.frame_left,
-                                        text="Fetcher",
-                                        fg_color=("purple"),
-                                        command=lambda:show_frame(fr.fetcher_frame))
-fr.button_1.grid(row=2, column=0, pady=10, padx=20)
+fr.nav_button_fetcher = customtkinter.CTkButton(
+    master=fr.frame_left,
+    text="Fetcher",
+    fg_color=("purple"),
+    command=lambda:show_frame(fr.fetcher_frame)
+)
+fr.nav_button_fetcher.grid(row=2, column=0, pady=10, padx=20)
 
 #Generator knap
-fr.button_2 = customtkinter.CTkButton(master=fr.frame_left,
-                                        text="Generator",
-                                        fg_color=("purple"),
-                                        command=lambda:show_frame(fr.generator_frame))
-fr.button_2.grid(row=3, column=0, pady=10, padx=20)
+fr.nav_button_generator = customtkinter.CTkButton(
+    master=fr.frame_left,
+    text="Generator",
+    fg_color=("purple"),
+    command=lambda:show_frame(fr.generator_frame)
+)
+fr.nav_button_generator.grid(row=3, column=0, pady=10, padx=20)
 
 #Reader knap
-fr.button_3 = customtkinter.CTkButton(master=fr.frame_left,
-                                        text="Reader",
-                                        fg_color=("purple"),
-                                        command=lambda:show_frame(fr.reader_frame))
-fr.button_3.grid(row=4, column=0, pady=10, padx=20)
+fr.nav_button_reader = customtkinter.CTkButton(
+    master=fr.frame_left,
+    text="Reader",
+    fg_color=("purple"),
+    command=lambda:show_frame(fr.reader_frame)
+)
+fr.nav_button_reader.grid(row=4, column=0, pady=10, padx=20)
 
 #History knap
-fr.button_4 = customtkinter.CTkButton(master=fr.frame_left,
-                                        text="History",
-                                        fg_color=("purple"),
-                                        command=lambda:show_frame(fr.history_frame))
-fr.button_4.grid(row=5, column=0, pady=10, padx=20)
+fr.nav_button_history = customtkinter.CTkButton(
+    master=fr.frame_left,
+    text="History",
+    fg_color=("purple"),
+    command=lambda:show_frame(fr.history_frame)
+)
+fr.nav_button_history.grid(row=5, column=0, pady=10, padx=20)
 
 #Settings knap
-fr.button_5 = customtkinter.CTkButton(master=fr.frame_left,
-                                        text="Settings",
-                                        fg_color=("purple"),
-                                        command=lambda:show_frame(fr.settings_frame))
-fr.button_5.grid(row=6, column=0, pady=10, padx=20)
+fr.nav_button_settings = customtkinter.CTkButton(
+    master=fr.frame_left,
+    text="Settings",
+    fg_color=("purple"),
+    command=lambda:show_frame(fr.settings_frame)
+)
+fr.nav_button_settings.grid(row=6, column=0, pady=10, padx=20)
 
 #Exit knap
-fr.button_6 = customtkinter.CTkButton(master=fr.frame_left,
-                                        text="Exit"
-                                        ,fg_color=("purple"),
-                                        command=close_fr)
-fr.button_6.grid(row=10, column=0, pady=10, padx=20)
+fr.nav_button_exit = customtkinter.CTkButton(
+    master=fr.frame_left,
+    text="Exit",
+    fg_color=("purple"),
+    command=close_fr)
+fr.nav_button_exit.grid(row=10, column=0, pady=10, padx=20)
 
 #=============================================================================================
 #Højre side vindu
