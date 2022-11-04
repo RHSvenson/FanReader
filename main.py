@@ -17,6 +17,9 @@ from director import director
 from DataTools.chapterFetcher import *
 from DataTools.pageFetcher import *
 
+from GUI.ControllerWindow import ControllerWindow
+from GUI.Frames.Containers import Container
+
 #=============================================================================================
 #Bavgrunds tema
 #=============================================================================================
@@ -28,19 +31,7 @@ customtkinter.set_appearance_mode("Dark")
 #CTk Root/Main og title
 #=============================================================================================
 
-#Root/Main (der skal bruges CTk og ikke Tk)
-fr = customtkinter.CTk()
-#Program Title
-fr.title("FanReader")
-
-#=============================================================================================
-#Windows definitioner
-#=============================================================================================
-
-#window start størrelse
-fr.geometry("860x480")
-#Window min størrelse
-fr.minsize(640,480)
+fr = ControllerWindow()
 
 #=============================================================================================
 #Logo/Icon
@@ -55,32 +46,15 @@ fr.iconphoto(True, unicon)
 #Grids
 #=============================================================================================
 
-fr.grid_columnconfigure(1, weight=1)
-fr.grid_rowconfigure(0, weight=1)
-
-#Definer vænstre side af Menuen
-fr.frame_left = customtkinter.CTkFrame(master=fr,
-                                         width=180,
-                                         corner_radius=0)
-fr.frame_left.grid(row=0, column=0, sticky="nswe")
-
-#kontrollerer toppen af frame_left
-fr.frame_left.grid_rowconfigure(0, minsize=10)
-fr.frame_left.grid_rowconfigure(8, weight=1)
-#kontrollerer bunden af frame_left
-fr.frame_left.grid_rowconfigure(9, minsize=20)
-fr.frame_left.grid_rowconfigure(11, minsize=15)
-
-#Definer højre side af Menuen
-fr.frame_right = customtkinter.CTkFrame(master=fr)
-fr.frame_right.grid(row=0, column=1, sticky="nswe", padx=20, pady=20)
-
-#kontrollerer toppen af frame_right
-fr.frame_right.rowconfigure((0, 1, 2, 3), weight=1)
-fr.frame_right.rowconfigure(7, weight=10)
-#kontrollerer bunden af frame_right
-fr.frame_right.columnconfigure((0, 1), weight=1)
-fr.frame_right.columnconfigure(2, weight=0)
+#Definer venstre side af Menuen
+fr.frame_left = Container(
+    parent = fr, 
+    type = "sidebar"
+)
+fr.frame_right = Container(
+    parent = fr,
+    type = "main"
+)
 
 #=============================================================================================
 #Command/def(s)

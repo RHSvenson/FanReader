@@ -8,28 +8,46 @@ from tkinter import filedialog as fd
 #from utils.LinkTester import LinkTester
 import os, glob
 
-class SidebarContainer(customtkinter.CTkFrame):
-    def __init__(self, parent):
+class Container(customtkinter.CTkFrame):
+    def __init__(self, parent, type):
         # Dan containeren
-        customtkinter.CTkFrame.__init__(
-            self,
-            master = parent,
-            width = 180,
-            corner_radius = 0)
+        if type == "sidebar":
+            customtkinter.CTkFrame.__init__(
+                self,
+                master = parent,
+                width = 180,
+                corner_radius = 0)
 
-        self.grid(
-            row = 0,
-            column = 0,
-            sticky = "nswe"
-        )
+            self.grid(
+                row = 0,
+                column = 0,
+                sticky = "nswe"
+            )
+            ## Afgrænsing
+            # Toppen af rammen
+            self.grid_rowconfigure(0, minsize = 10)
+            self.grid_rowconfigure(8, weight = 1)
+
+            # Bunden af rammen
+            self.grid_rowconfigure(9, minsize = 20)
+            self.grid_rowconfigure(11, minsize = 15)
         
-        ## Afgrænsing
-        # Toppen af rammen
-        self.grid_rowconfigure(0, minsize = 10)
-        self.grid_rowconfigure(8, weight = 1)
+        elif type == "main":
+            customtkinter.CTkFrame.__init__(
+                self,
+                master = parent,
+            )
+            self.grid(
+                row = 0,
+                column = 1,
+                sticky = "nswe",
+                padx = 20, pady = 20)
 
-        # Bunden af rammen
-        self.grid_rowconfigure(9, minsize = 20)
-        self.grid_rowconfigure(11, minsize = 15)
+            #kontrollerer toppen af frame_right
+            self.rowconfigure((0, 1, 2, 3), weight=1)
+            self.rowconfigure(7, weight=10)
+            #kontrollerer bunden af frame_right
+            self.columnconfigure((0, 1), weight=1)
+            self.columnconfigure(2, weight=0)
         
     

@@ -6,7 +6,8 @@ import customtkinter
 from tkinter import filedialog as fd
 
 import os, glob
-from Frames.Containers import SidebarContainer
+
+customtkinter.set_appearance_mode("dark")
 
 class ControllerWindow(customtkinter.CTk):
     def __init__(self, *args, **kwargs):
@@ -26,12 +27,6 @@ class ControllerWindow(customtkinter.CTk):
         unicon = PhotoImage(file='GarboIconWithBook100px.png')
         self.iconphoto(True, unicon)
 
-        # Container til navigationsknapper
-        SideContainer = SidebarContainer(self)
-        
 
-fr = ControllerWindow()
-
-fr.mainloop()
 
         
