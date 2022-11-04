@@ -14,7 +14,6 @@ class ControllerWindow(customtkinter.CTk):
         customtkinter.CTk.__init__(self, *args, **kwargs)
 
         # Basis udseende
-        self.set_appearance_mode("dark")
         self.title("FanReader")
         self.geometry("860x480")
         self.minsize(640,480)
@@ -26,7 +25,4 @@ class ControllerWindow(customtkinter.CTk):
         # Ikon
         unicon = PhotoImage(file='GarboIconWithBook100px.png')
         self.iconphoto(True, unicon)
-
-
-
         
