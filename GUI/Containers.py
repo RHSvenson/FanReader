@@ -8,6 +8,24 @@ from tkinter import filedialog as fd
 #from utils.LinkTester import LinkTester
 import os, glob
 
+class ControllerWindow(customtkinter.CTk):
+    def __init__(self, *args, **kwargs):
+        customtkinter.CTk.__init__(self, *args, **kwargs)
+
+        # Basis udseende
+        self.title("FanReader")
+        self.geometry("860x480")
+        self.minsize(640,480)
+
+        # Basis grids
+        self.grid_columnconfigure(1, weight = 1)
+        self.grid_rowconfigure(0, weight = 1)
+
+        # Ikon
+        unicon = PhotoImage(file='GarboIconWithBook100px.png')
+        self.iconphoto(True, unicon)
+ 
+
 class Container(customtkinter.CTkFrame):
     def __init__(self, parent, type):
         # Dan containeren
@@ -49,5 +67,3 @@ class Container(customtkinter.CTkFrame):
             #kontrollerer bunden af frame_right
             self.columnconfigure((0, 1), weight=1)
             self.columnconfigure(2, weight=0)
-        
-    

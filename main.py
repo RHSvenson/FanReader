@@ -17,8 +17,8 @@ from director import director
 from DataTools.chapterFetcher import *
 from DataTools.pageFetcher import *
 
-from GUI.ControllerWindow import ControllerWindow
-from GUI.Frames.Containers import Container
+from GUI.Containers import *
+from GUI.Frames import FetcherFrame
 
 #=============================================================================================
 #Bavgrunds tema
@@ -70,12 +70,6 @@ def show_frame(frame):
     frame.tkraise()
 
 #Tager den url som man intaster og inserter den i chapter_list
-def fetch_chapters():
-    soup = pageFetcher(fr.url_entry.get())
-    chapters = chapterFetcher(soup)
-    for chapter in chapters:
-        chapter_list.insert(chapter_list.size(),chapter)
-    print("Button Clicked! The Given URL Is "+fr.url_entry.get())
 
 #Lukker FR
 def close_fr():
@@ -178,7 +172,7 @@ fr.first_frame_info.pack(fill='both', expand=True)
 #fr.first_frame_info.grid(column=0, row=0, sticky="nwe", padx=15, pady=15)
 
 #Definere de forskellige frame vinduer (% fr.first_frame) til højre side af FR
-fr.fetcher_frame = customtkinter.CTkFrame(master=fr.frame_right)
+fr.fetcher_frame = FetcherFrame(parent = fr.frame_right)
 fr.generator_frame = customtkinter.CTkFrame(master=fr.frame_right)
 fr.reader_frame = customtkinter.CTkFrame(master=fr.frame_right)
 fr.history_frame = customtkinter.CTkFrame(master=fr.frame_right)
@@ -197,23 +191,7 @@ fr.frame_box.columnconfigure(0, weight=1)
 
 #Styrer hvar der visses i fr.fetcher_frame
 #URL entry boks
-fr.url_entry = customtkinter.CTkEntry(master=fr.fetcher_frame,
-                                    width=120,
-                                    placeholder_text="Enter URL here")
-fr.url_entry.grid(row=0, column=0, columnspan=2, pady=20, padx=20, sticky="we")
-#Fetch URL knap
-fr.fetcher_b_url = customtkinter.CTkButton(master=fr.fetcher_frame,
-                                            text="Fetch URL",
-                                            text_font=("times 35", 12),
-                                            fg_color=("purple"),
-                                            command=fetch_chapters)
-fr.fetcher_b_url.grid(row=0, column=2, pady=10, padx=20, sticky="w")
-#List Box
-chapter_list = Listbox(master=fr.fetcher_frame,
-                   bg="purple",
-                   font=("times 35", 12))
-chapter_list.grid(row=2, column=0, pady=10, padx=20, sticky="nsew")
-chapter_list.config(height=chapter_list.size())
+
 #Save Individual Chapter knap
 fr.fetcher_b_sic = customtkinter.CTkButton(master=fr.fetcher_frame,
                                             text="Save Individual Chapter",
