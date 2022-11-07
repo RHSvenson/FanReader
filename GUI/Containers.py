@@ -126,3 +126,6 @@ class MainContainer(customtkinter.CTkFrame):
         #kontrollerer bunden af frame_right
         self.columnconfigure((0, 1), weight=1)
         self.columnconfigure(2, weight=0)
+
+        self.chapters = {}
+        self.current_story_title = ""

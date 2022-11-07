@@ -70,6 +70,7 @@ class FetcherFrame(customtkinter.CTkFrame):
             master = self,
             bg = "purple",
             font = ("times 35", 12),
+            selectmode = SINGLE
         )
         self.chapter_list.grid(
             row = 2,
@@ -87,7 +88,7 @@ class FetcherFrame(customtkinter.CTkFrame):
             master = self,
             text = "Save Individual Chapter",
             fg_color = ("purple"),
-            command = self.click
+            command = lambda: self.save_chapter_from_web(parent, self.chapter_list.curselection())
         )
         self.save_one_chapter_button.grid(
             row=7,
@@ -128,13 +129,28 @@ class FetcherFrame(customtkinter.CTkFrame):
 
         self.results = re.findall("\/chapters\/download\/\d+\/txt",str(self.results))
         i = 0
-        parent.chapters = {}
         for result in self.results:
             parent.chapters[f"Chapter {i+1}"] = "https://www.fimfiction.net"+result
             i += 1
         
         for chapter in parent.chapters:
             self.chapter_list.insert(self.chapter_list.size(),chapter)
+
+    def save_chapter_from_web(self, parent, chapter):
+        self.root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+        self.target_directory = os.path.join(self.root_directory, f'Data/previousStories/{parent.current_story_title}')
+
+        print("Attempting to print file " + f"Chapter{chapter[0]+1}.txt" + " to destination " + str(self.target_directory) +"...")
+
+        if os.path.exists(self.target_directory):
+            with open (os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"), "wb") as destination:
+                destination.write(requests.get(parent.chapters[f"Chapter {chapter[0]+1}"]).content)
+        
+        else:
+            os.makedirs(self.target_directory)
+            with open (os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"), "wb") as destination:
+                destination.write(requests.get(parent.chapters[f"Chapter {chapter[0]+1}"]).content)
+
 
     # Funktion til brug ved tryk på Save Chapter knapperne. Bruges til begge.
     

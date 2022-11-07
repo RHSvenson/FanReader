@@ -1,5 +1,15 @@
 # Hovedmenu script
 
+import os
+
+#=============================================
+# Definer konstanter
+#=============================================
+
+ROOTDIR = os.path.dirname(os.path.abspath(__file__))
+
+
+
 #=============================================================================================
 #Import(s)
 #=============================================================================================
@@ -12,11 +22,11 @@ from tkinter.tix import IMAGE
 import customtkinter
 from tkinter import filedialog as fd
 #from utils.LinkTester import LinkTester
-import os, glob
 from director import director
 
 from GUI.Containers import *
 from GUI.Frames import FetcherFrame
+
 
 #=============================================================================================
 #Bavgrunds tema
