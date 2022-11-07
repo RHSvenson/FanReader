@@ -9,6 +9,8 @@ from tkinter import filedialog as fd
 import os, glob
 from .Frames import *
 
+import json
+
 class SidebarContainer(customtkinter.CTkFrame):
     def __init__(self, controller):
         # Dan containeren
@@ -124,4 +126,3 @@ class MainContainer(customtkinter.CTkFrame):
         #kontrollerer bunden af frame_right
         self.columnconfigure((0, 1), weight=1)
         self.columnconfigure(2, weight=0)
-

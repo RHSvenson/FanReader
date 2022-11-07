@@ -14,8 +14,6 @@ from tkinter import filedialog as fd
 #from utils.LinkTester import LinkTester
 import os, glob
 from director import director
-from DataTools.chapterFetcher import *
-from DataTools.pageFetcher import *
 
 from GUI.Containers import *
 from GUI.Frames import FetcherFrame

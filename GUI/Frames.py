@@ -12,6 +12,9 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+import json
+import string
+
 class FetcherFrame(customtkinter.CTkFrame):
     
     def __init__(self, parent):
@@ -42,13 +45,25 @@ class FetcherFrame(customtkinter.CTkFrame):
             text = "Fetch URL",
             text_font = ("times 35", 12),
             fg_color = ("purple"),
-            command = lambda: self.fetch_chapters()
+            command = lambda: self.fetch_chapters(parent)
         )
         self.fetch_button.grid(
             row = 0,
             column = 2,
             pady = 10, padx = 20,
             sticky = "w"
+        )
+
+        self.story_title_field = customtkinter.CTkLabel(
+            master = self,
+            width = 80,
+            text = "No Story Initialized."
+        )
+        self.story_title_field.grid(
+            row = 1,
+            column = 0,
+            pady = 10,
+            padx = 20,
         )
 
         # Liste der indeholder de kapitler funktionen fandt.
@@ -92,25 +107,41 @@ class FetcherFrame(customtkinter.CTkFrame):
         )
         self.save_all_chapters_button.grid(row=7, column=1, pady=10, padx=20, sticky="w")
 
-    def fetch_chapters(self):
-        url = self.url_field.get()
+    def fetch_chapters(self, parent):
+        self.url = self.url_field.get()
         print("Starting Fetch...")
-        r = requests.get(url, allow_redirects=True,)
+        self.r = requests.get(self.url, allow_redirects=True,)
 
-        soup = BeautifulSoup(r.text, features="html.parser")
-        txt_links = lambda tag: (getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs and 'txt' in tag.get_text().lower())
-        results = soup.find_all(txt_links)
         print("Story fetched, scanning...")
 
-        results = re.findall("\/chapters\/download\/\d+\/txt",str(results))
+        self.story_title = re.search("(?<=\/\d{6}\/).+", self.url)
+        self.story_title = self.story_title.group()
+        self.story_title = re.sub("\-", " ", self.story_title)
+        self.story_title = string.capwords(self.story_title, sep = None)
+        self.story_title_field.configure(text = self.story_title)
+        parent.current_story_title = self.story_title
+
+
+        self.soup = BeautifulSoup(self.r.text, features="html.parser")
+        self.txt_links = lambda tag: (
+            getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs and 'txt' in tag.get_text().lower()
+        )
+        self.results = self.soup.find_all(self.txt_links)
+
+        self.results = re.findall("\/chapters\/download\/\d+\/txt",str(self.results))
         i = 0
-        chapters = {}
-        for result in results:
-            chapters[f"Chapter {i+1}"] = "https://www.fimfiction.net"+result
+        parent.chapters = {}
+        for result in self.results:
+            parent.chapters[f"Chapter {i+1}"] = "https://www.fimfiction.net"+result
             i += 1
         
-        for chapter in chapters:
+        for chapter in parent.chapters:
             self.chapter_list.insert(self.chapter_list.size(),chapter)
+
+    # Funktion til brug ved tryk på Save Chapter knapperne. Bruges til begge.
+    
+            
+
 
     def click(self):
         print("Test Click")
