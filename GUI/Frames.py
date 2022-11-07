@@ -28,13 +28,11 @@ class FetcherFrame(customtkinter.CTkFrame):
         # Feldt til at indtaste URL
         self.url_field = customtkinter.CTkEntry(
             master = self,
-            width = 120,
             placeholder_text = "Enter URL Here"
         )
         self.url_field.grid(
             row = 0,
             column = 0,
-            columnspan = 2,
             pady = 20, padx = 20,
             sticky = "we"
         )
@@ -49,9 +47,9 @@ class FetcherFrame(customtkinter.CTkFrame):
         )
         self.fetch_button.grid(
             row = 0,
-            column = 2,
+            column = 1,
             pady = 10, padx = 20,
-            sticky = "w"
+            sticky = "we"
         )
 
         self.story_title_field = customtkinter.CTkLabel(
@@ -71,14 +69,14 @@ class FetcherFrame(customtkinter.CTkFrame):
         self.chapter_list = Listbox(
             master = self,
             bg = "purple",
-            font = ("times 35", 12)
+            font = ("times 35", 12),
         )
         self.chapter_list.grid(
             row = 2,
-            column = 0,
             pady = 10,
             padx = 20, 
-            sticky = "nsew"
+            sticky = "nsew",
+            columnspan = 2
         )
         self.chapter_list.config(
             height=self.chapter_list.size()
