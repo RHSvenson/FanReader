@@ -170,12 +170,34 @@ class FetcherFrame(customtkinter.CTkFrame):
             with open (os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"), "wb") as destination:
                 destination.write(requests.get(parent.chapters[f"Chapter {chapter[0]+1}"]).content)
 
+        # Opdater .json til senere
+        self.json_path = os.path.join(self.root_directory, "Data/previousStories/index.json")
+
+        with open (self.json_path, "r") as indexraw:
+            if os.path.getsize(self.json_path) > 0:
+                self.index = json.load(indexraw)
+            else:
+                self.index = {}
+            
+            if self.index[parent.current_story_title] != None:
+                self.index[parent.current_story_title][f"Chapter{chapter[0]+1}"] = {
+                    "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
+                    "ProcessedLoc": "None"
+                }
+            else:
+                self.index[parent.current_story_title] = {
+                    f"Chapter{chapter[0]+1}": {
+                        "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
+                        "ProcessedLoc": "None"
+                    }
+                }
+        
+        with open (self.json_path, "w") as indexraw:
+            indexraw.write(json.dumps(self.index, indent = 4))
+
+
 
     # Funktion til brug ved tryk på Save Chapter knapperne. Bruges til begge.
-    
-            
-
-
     def click(self):
         print("Test Click")
 
@@ -188,20 +210,36 @@ class GeneratorFrame(customtkinter.CTkFrame):
             master = parent
         )
 
-        # Knap til manuel filvalg
-        self.generator_manual_button = customtkinter.CTkButton(
+        # Vælg imellem kapitler af indlæste historie
+        self.loaded_chapters_label = customtkinter.CTkLabel(
             master = self,
-            command = self.click,
-            text_font = ("times 35", 12),
-            fg_color = ("purple"),
-            text = "Manual (Browse Files)"
+            width = 80,
+            text = "Chapters from currently loaded chapter",
+            text_font = ("times 35", 20),
+            bg_color = "purple"
         )
-        self.generator_manual_button.grid(
+        self.loaded_chapters_label.grid(
             row = 0,
             column = 0,
             pady = 10, padx = 20,
-            sticky = "w"
+            sticky = "swe"
         )
+
+        self.loaded_chapters_list = Listbox(
+            master = self,
+            bg = "purple",
+            font = ("times 35", 12),
+            selectmode = SINGLE
+        )
+        self.loaded_chapters_list.grid(
+            row = 1,
+            column = 0,
+            pady = 10, padx = 20,
+            sticky = "nwe"
+        )
+        for chapter in parent.chapters:
+            self.loaded_chapters_list.insert(self.loaded_chapters_list.size(),chapter)
+
 
     def click(self):
         print("Test button")
