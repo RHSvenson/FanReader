@@ -107,45 +107,64 @@ class FetcherFrame(customtkinter.CTkFrame):
         self.save_all_chapters_button.grid(row=7, column=1, pady=10, padx=20, sticky="w")
 
     def fetch_chapters(self, parent):
+        # Funktion til at samle de links vi skal bruge til de forskellige kapitler, og vise dem på skærmen
+
+        # Hent den indtastede URL fra GUI feltet
         self.url = self.url_field.get()
         print("Starting Fetch...")
-        self.r = requests.get(self.url, allow_redirects=True,)
 
+        # Indhent HTML siden fra linket til memory
+        self.r = requests.get(self.url, allow_redirects=True,)
         print("Story fetched, scanning...")
 
+        # Indsaml historien titel ved at formatere det fra linket.
+        # TODO: Dette virker lige nu kun på FimFiction. Dette skal ændres når vi bliver bekendte med andre hjemmesider.
         self.story_title = re.search("(?<=\/\d{6}\/).+", self.url)
         self.story_title = self.story_title.group()
         self.story_title = re.sub("\-", " ", self.story_title)
         self.story_title = string.capwords(self.story_title, sep = None)
         self.story_title_field.configure(text = self.story_title)
+        # NOTE: Alle variabler, såsom titlen på den nuværende indlæste historie opbevares i MainWindow (parent)
         parent.current_story_title = self.story_title
 
-
+        # Find alle links til individuelle kapitler
         self.soup = BeautifulSoup(self.r.text, features="html.parser")
         self.txt_links = lambda tag: (
             getattr(tag, 'name', None) == 'a' and 'href' in tag.attrs and 'txt' in tag.get_text().lower()
         )
         self.results = self.soup.find_all(self.txt_links)
-
         self.results = re.findall("\/chapters\/download\/\d+\/txt",str(self.results))
+
+        # Og indsæt dem i en liste
+        # NOTE: Kapitel dictionary er også opbevaret i MainWindow, da den skal tilgås af andre objekter.
         i = 0
         for result in self.results:
             parent.chapters[f"Chapter {i+1}"] = "https://www.fimfiction.net"+result
             i += 1
         
+        # Indsæt kapitlerne i GUI listen, så brugeren kan se og vælge dem
         for chapter in parent.chapters:
             self.chapter_list.insert(self.chapter_list.size(),chapter)
 
     def save_chapter_from_web(self, parent, chapter):
+        # Metode til når man bruger 'Save Chapter' knapperne.
+
+        # Fastlægger hvor vi er henne.
+        # NOTE: Muligvis ikke cross-platform, dette skal kontrolleres.
         self.root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+        # Og hvor vi skal hen
         self.target_directory = os.path.join(self.root_directory, f'Data/previousStories/{parent.current_story_title}')
 
         print("Attempting to print file " + f"Chapter{chapter[0]+1}.txt" + " to destination " + str(self.target_directory) +"...")
 
+        # Hvis mappen findes, så skriv med det samme
         if os.path.exists(self.target_directory):
             with open (os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"), "wb") as destination:
                 destination.write(requests.get(parent.chapters[f"Chapter {chapter[0]+1}"]).content)
         
+        # Ellers så lav mappen først.
+        # NOTE: Koden kan virke redundant, men det er meget mere sandsynligt at mappen allerede findes, hvorfor denne
+        # er længere nede i hierarkiet, så vi ikke spiller tid på et tjek der kun skal udføres en ud af 30 gange.
         else:
             os.makedirs(self.target_directory)
             with open (os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"), "wb") as destination:
