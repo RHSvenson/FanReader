@@ -178,13 +178,12 @@ class FetcherFrame(customtkinter.CTkFrame):
                 self.index = json.load(indexraw)
             else:
                 self.index = {}
-            
-            if self.index[parent.current_story_title] != None:
+            try:
                 self.index[parent.current_story_title][f"Chapter{chapter[0]+1}"] = {
                     "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
                     "ProcessedLoc": "None"
                 }
-            else:
+            except KeyError:
                 self.index[parent.current_story_title] = {
                     f"Chapter{chapter[0]+1}": {
                         "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
