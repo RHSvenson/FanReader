@@ -82,6 +82,7 @@ class ControllerWindow(customtkinter.CTk):
         quit()
 
     def show_frame(self, frame):
+        frame.update_frame()
         frame.tkraise()
 
 

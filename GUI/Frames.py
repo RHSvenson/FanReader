@@ -23,6 +23,7 @@ class FetcherFrame(customtkinter.CTkFrame):
             self,
             master = parent
         )
+        self.parent = parent
         self.grid(row=0, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
 
         # Feldt til at indtaste URL
@@ -194,7 +195,9 @@ class FetcherFrame(customtkinter.CTkFrame):
         with open (self.json_path, "w") as indexraw:
             indexraw.write(json.dumps(self.index, indent = 4))
 
-
+    # Hvad der skal opdateres når den får en update kommando fra RaiseFrame.
+    def update_frame(self):
+        pass
 
     # Funktion til brug ved tryk på Save Chapter knapperne. Bruges til begge.
     def click(self):
@@ -209,36 +212,18 @@ class GeneratorFrame(customtkinter.CTkFrame):
             master = parent
         )
 
-        # Vælg imellem kapitler af indlæste historie
-        self.loaded_chapters_label = customtkinter.CTkLabel(
-            master = self,
-            width = 80,
-            text = "Chapters from currently loaded chapter",
-            text_font = ("times 35", 20),
-            bg_color = "purple"
-        )
-        self.loaded_chapters_label.grid(
-            row = 0,
-            column = 0,
-            pady = 10, padx = 20,
-            sticky = "swe"
-        )
+        self.parent = parent
 
-        self.loaded_chapters_list = Listbox(
-            master = self,
-            bg = "purple",
-            font = ("times 35", 12),
-            selectmode = SINGLE
-        )
-        self.loaded_chapters_list.grid(
-            row = 1,
-            column = 0,
-            pady = 10, padx = 20,
-            sticky = "nwe"
-        )
-        for chapter in parent.chapters:
-            self.loaded_chapters_list.insert(self.loaded_chapters_list.size(),chapter)
+        # TODO:
+        # Lav label der viser den nuværende historie
+        # Lav knap til at vælge en anden tidligere indlæst historie fra index.json
+        # Lav liste der viser DOWNLOADEDE filer, og en henvisning til fetcher hvis der er intet downloaded.
 
+
+
+    # Hvad der skal opdateres når den kaldes med raise.
+    def update_frame(self):
+        pass
 
     def click(self):
         print("Test button")
@@ -249,6 +234,8 @@ class ReaderFrame(customtkinter.CTkFrame):
             self,
             master = parent
         )
+
+        self.parent = parent
 
         self.placeholder_info = customtkinter.CTkLabel(
             master = self,
@@ -264,12 +251,17 @@ class ReaderFrame(customtkinter.CTkFrame):
             expand = True
         )
 
+    def update_frame(self):
+        pass
+
 class HistoryFrame(customtkinter.CTkFrame):
     def __init__(self, parent):
         customtkinter.CTkFrame.__init__(
             self,
             master = parent
         )
+
+        self.parent = parent
 
         self.placeholder_info = customtkinter.CTkLabel(
             master = self,
@@ -285,12 +277,17 @@ class HistoryFrame(customtkinter.CTkFrame):
             expand = True
         )
 
+    def update_frame(self):
+        pass
+
 class SettingsFrame(customtkinter.CTkFrame):
     def __init__(self, parent):
         customtkinter.CTkFrame.__init__(
             self,
             master = parent
         )
+
+        self.parent = parent
 
         self.settings_server = customtkinter.CTkLabel(
             master = self,
@@ -311,3 +308,6 @@ class SettingsFrame(customtkinter.CTkFrame):
             fg_color=("white", "black"),
             justify=tkinter.LEFT)
         self.settings_reader.grid(column=0, row=2, sticky="nwe", padx=15, pady=15)
+    
+    def update_frame(self):
+        pass
