@@ -103,7 +103,7 @@ class FetcherFrame(customtkinter.CTkFrame):
             master = self,
             text = "Save All Chapters",
             fg_color = ("purple"),
-            command = self.click
+            command = lambda: self.save_all_chapters_from_web(parent)
         )
         self.save_all_chapters_button.grid(row=7, column=1, pady=10, padx=20, sticky="w")
 
@@ -120,13 +120,13 @@ class FetcherFrame(customtkinter.CTkFrame):
 
         # Indsaml historien titel ved at formatere det fra linket.
         # TODO: Dette virker lige nu kun på FimFiction. Dette skal ændres når vi bliver bekendte med andre hjemmesider.
-        self.story_title = re.search("(?<=\/\d{6}\/).+", self.url)
+        self.story_title = re.search("(?<=\d{3}\/).+", self.url)
         self.story_title = self.story_title.group()
         self.story_title = re.sub("\-", " ", self.story_title)
         self.story_title = string.capwords(self.story_title, sep = None)
         self.story_title_field.configure(text = self.story_title)
         # NOTE: Alle variabler, såsom titlen på den nuværende indlæste historie opbevares i MainWindow (parent)
-        parent.current_story_title = self.story_title
+        parent.current_story_title.set(self.story_title)
 
         # Find alle links til individuelle kapitler
         self.soup = BeautifulSoup(self.r.text, features="html.parser")
@@ -154,7 +154,7 @@ class FetcherFrame(customtkinter.CTkFrame):
         # NOTE: Muligvis ikke cross-platform, dette skal kontrolleres.
         self.root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
         # Og hvor vi skal hen
-        self.target_directory = os.path.join(self.root_directory, f'Data/previousStories/{parent.current_story_title}')
+        self.target_directory = os.path.join(self.root_directory, f'Data/previousStories/{parent.current_story_title.get()}')
 
         print("Attempting to print file " + f"Chapter{chapter[0]+1}.txt" + " to destination " + str(self.target_directory) +"...")
 
@@ -173,19 +173,22 @@ class FetcherFrame(customtkinter.CTkFrame):
 
         # Opdater .json til senere
         self.json_path = os.path.join(self.root_directory, "Data/previousStories/index.json")
-
+        
+        if not os.path.exists(self.json_path):
+            with open (self.json_path, "w") as indexraw:
+                pass
         with open (self.json_path, "r") as indexraw:
             if os.path.getsize(self.json_path) > 0:
                 self.index = json.load(indexraw)
             else:
                 self.index = {}
             try:
-                self.index[parent.current_story_title][f"Chapter{chapter[0]+1}"] = {
+                self.index[parent.current_story_title.get()][f"Chapter{chapter[0]+1}"] = {
                     "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
                     "ProcessedLoc": "None"
                 }
             except KeyError:
-                self.index[parent.current_story_title] = {
+                self.index[parent.current_story_title.get()] = {
                     f"Chapter{chapter[0]+1}": {
                         "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
                         "ProcessedLoc": "None"
@@ -194,6 +197,21 @@ class FetcherFrame(customtkinter.CTkFrame):
         
         with open (self.json_path, "w") as indexraw:
             indexraw.write(json.dumps(self.index, indent = 4))
+
+    def save_all_chapters_from_web(self, parent):
+        i = 0
+        for chapter in self.chapter_list.get(
+            first = 0,
+            last = self.chapter_list.size()
+        ):
+            chapter_tuple = (i, chapter)
+            self.save_chapter_from_web(
+                parent = parent,
+                chapter = chapter_tuple
+            )
+            i = i + 1
+            
+
 
     # Hvad der skal opdateres når den får en update kommando fra RaiseFrame.
     def update_frame(self):
@@ -213,6 +231,19 @@ class GeneratorFrame(customtkinter.CTkFrame):
         )
 
         self.parent = parent
+
+        self.current_story_label = customtkinter.CTkLabel(
+            master = self,
+            textvariable = parent.current_story_title,
+            corner_radius = 4,
+        )
+        self.current_story_label.grid(
+            row = 0,
+            column = 0,
+            columnspan = 2,
+            pady = 20, padx = 20,
+            sticky = "we"
+        )
 
         # TODO:
         # Lav label der viser den nuværende historie

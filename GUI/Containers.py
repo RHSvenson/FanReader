@@ -128,4 +128,8 @@ class MainContainer(customtkinter.CTkFrame):
         self.columnconfigure(2, weight=0)
 
         self.chapters = {}
-        self.current_story_title = ""
+        self.current_story_title = tkinter.StringVar(
+            master = self,
+            value = "No Story Currently Initialized",
+            name = "current_story_title"
+        )
