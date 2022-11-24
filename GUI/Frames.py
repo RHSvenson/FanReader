@@ -250,16 +250,33 @@ class GeneratorFrame(customtkinter.CTkFrame):
             sticky = "we"
         )
 
+        # Liste over hentede kapitler
+        self.chapter_list = Listbox(
+            master = self,
+            bg = "purple",
+            font = ("times 35", 12),
+            selectmode = SINGLE
+        )
+        self.chapter_list.grid(
+            row = 2,
+            pady = 10,
+            padx = 20, 
+            sticky = "nsew",
+            columnspan = 2
+        )
+        for chapter in self.master.chapters:
+            self.chapter_list.insert(self.chapter_list.size(),chapter)
+        
+
         # TODO:
-        # Lav label der viser den nuværende historie
-        # Lav knap til at vælge en anden tidligere indlæst historie fra index.json
-        # Lav liste der viser DOWNLOADEDE filer, og en henvisning til fetcher hvis der er intet downloaded.
-
-
+        # Lav knap der caller Director. Endelig.
 
     # Hvad der skal opdateres når den kaldes med raise.
     def update_frame(self):
-        pass
+        # Ryd og opdater chapter_list
+        self.chapter_list.delete(0, END)
+        for chapter in self.master.chapters:
+            self.chapter_list.insert(self.chapter_list.size(),chapter)
 
     # Åbn vindue der lader dig vælge en anden historie.
 
