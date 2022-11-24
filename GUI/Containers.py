@@ -53,6 +53,19 @@ class SidebarContainer(customtkinter.CTkFrame):
             pady = 10, padx = 10
         )
 
+        self.current_story_label = customtkinter.CTkLabel(
+            master = self,
+            textvariable = self.master.current_story_title,
+            corner_radius = 4,
+        )
+        self.current_story_label.grid(
+            row = 2,
+            column = 0,
+            columnspan = 2,
+            pady = 20, padx = 20,
+            sticky = "we"
+        )
+
         #Fetcher knap
         self.nav_button_fetcher = customtkinter.CTkButton(
             master = self,
@@ -60,7 +73,7 @@ class SidebarContainer(customtkinter.CTkFrame):
             fg_color = ("purple"),
             command = lambda: controller.show_frame(controller.fetcher_frame)
         )
-        self.nav_button_fetcher.grid(row=2, column=0, pady=10, padx=20)
+        self.nav_button_fetcher.grid(row=5, column=0, pady=10, padx=20)
 
         #Generator knap
         self.nav_button_generator = customtkinter.CTkButton(
@@ -69,7 +82,7 @@ class SidebarContainer(customtkinter.CTkFrame):
             fg_color = ("purple"),
             command = lambda: controller.show_frame(controller.generator_frame)
         )
-        self.nav_button_generator.grid(row=3, column=0, pady=10, padx=20)
+        self.nav_button_generator.grid(row=6, column=0, pady=10, padx=20)
 
         #Reader knap
         self.nav_button_reader = customtkinter.CTkButton(
@@ -78,16 +91,16 @@ class SidebarContainer(customtkinter.CTkFrame):
             fg_color = ("purple"),
             command = lambda: controller.show_frame(controller.reader_frame)
         )
-        self.nav_button_reader.grid(row=4, column=0, pady=10, padx=20)
+        self.nav_button_reader.grid(row=7, column=0, pady=10, padx=20)
 
         #History knap
         self.nav_button_history = customtkinter.CTkButton(
             master = self,
-            text = "History",
+            text = "Change Story",
             fg_color = ("purple"),
             command = lambda: controller.show_frame(controller.history_frame)
         )
-        self.nav_button_history.grid(row=5, column=0, pady=10, padx=20)
+        self.nav_button_history.grid(row=3, column=0, pady=10, padx=20)
 
         #Settings knap
         self.nav_button_settings = customtkinter.CTkButton(
@@ -96,7 +109,7 @@ class SidebarContainer(customtkinter.CTkFrame):
             fg_color = ("purple"),
             command = lambda: controller.show_frame(controller.settings_frame)
         )
-        self.nav_button_settings.grid(row=6, column=0, pady=10, padx=20)
+        self.nav_button_settings.grid(row=9, column=0, pady=10, padx=20)
 
         #Exit knap
         self.nav_button_exit = customtkinter.CTkButton(
@@ -128,8 +141,3 @@ class MainContainer(customtkinter.CTkFrame):
         self.columnconfigure(2, weight=0)
 
         self.chapters = {}
-        self.current_story_title = tkinter.StringVar(
-            master = self,
-            value = "No Story Currently Initialized",
-            name = "current_story_title"
-        )

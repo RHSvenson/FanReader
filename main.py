@@ -56,6 +56,15 @@ class ControllerWindow(customtkinter.CTk):
         self.unicon = PhotoImage(file='GarboIconWithBook100px.png')
         self.iconphoto(True, self.unicon)
 
+        # Globale værdier
+        self.current_story_title = tkinter.StringVar(
+            master = self,
+            value = "No Story Currently Initialized",
+            name = "current_story_title"
+        )
+
+        self.rootdir = os.path.abspath(os.path.dirname(__file__))
+
         self.sidebar = SidebarContainer(controller = self)
         self.main_window = MainContainer(controller = self)
 

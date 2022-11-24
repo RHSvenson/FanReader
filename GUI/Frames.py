@@ -80,9 +80,9 @@ class FetcherFrame(customtkinter.CTkFrame):
             sticky = "nsew",
             columnspan = 2
         )
-        self.chapter_list.config(
-            height=self.chapter_list.size()
-        )
+        #self.chapter_list.config(
+        #    height=self.chapter_list.size()
+        #)
 
         # Knap til at gemme et kapitel
         self.save_one_chapter_button = customtkinter.CTkButton(
@@ -110,7 +110,12 @@ class FetcherFrame(customtkinter.CTkFrame):
     def fetch_chapters(self, parent):
         # Funktion til at samle de links vi skal bruge til de forskellige kapitler, og vise dem på skærmen
 
+
+        # Ryd tidligere kapitler først
+        self.chapter_list.delete(0, END)
+
         # Hent den indtastede URL fra GUI feltet
+
         self.url = self.url_field.get()
         print("Starting Fetch...")
 
@@ -126,7 +131,7 @@ class FetcherFrame(customtkinter.CTkFrame):
         self.story_title = string.capwords(self.story_title, sep = None)
         self.story_title_field.configure(text = self.story_title)
         # NOTE: Alle variabler, såsom titlen på den nuværende indlæste historie opbevares i MainWindow (parent)
-        parent.current_story_title.set(self.story_title)
+        self.master.master.current_story_title.set(self.story_title)
 
         # Find alle links til individuelle kapitler
         self.soup = BeautifulSoup(self.r.text, features="html.parser")
@@ -154,7 +159,7 @@ class FetcherFrame(customtkinter.CTkFrame):
         # NOTE: Muligvis ikke cross-platform, dette skal kontrolleres.
         self.root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
         # Og hvor vi skal hen
-        self.target_directory = os.path.join(self.root_directory, f'Data/previousStories/{parent.current_story_title.get()}')
+        self.target_directory = os.path.join(self.root_directory, f'Data/previousStories/{self.master.master.current_story_title.get()}')
 
         print("Attempting to print file " + f"Chapter{chapter[0]+1}.txt" + " to destination " + str(self.target_directory) +"...")
 
@@ -183,12 +188,12 @@ class FetcherFrame(customtkinter.CTkFrame):
             else:
                 self.index = {}
             try:
-                self.index[parent.current_story_title.get()][f"Chapter{chapter[0]+1}"] = {
+                self.index[self.master.master.current_story_title.get()][f"Chapter{chapter[0]+1}"] = {
                     "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
                     "ProcessedLoc": "None"
                 }
             except KeyError:
-                self.index[parent.current_story_title.get()] = {
+                self.index[self.master.master.current_story_title.get()] = {
                     f"Chapter{chapter[0]+1}": {
                         "RawLoc": os.path.join(self.target_directory ,f"Chapter{chapter[0]+1}.txt"),
                         "ProcessedLoc": "None"
@@ -234,7 +239,7 @@ class GeneratorFrame(customtkinter.CTkFrame):
 
         self.current_story_label = customtkinter.CTkLabel(
             master = self,
-            textvariable = parent.current_story_title,
+            textvariable = self.master.master.current_story_title,
             corner_radius = 4,
         )
         self.current_story_label.grid(
@@ -255,6 +260,8 @@ class GeneratorFrame(customtkinter.CTkFrame):
     # Hvad der skal opdateres når den kaldes med raise.
     def update_frame(self):
         pass
+
+    # Åbn vindue der lader dig vælge en anden historie.
 
     def click(self):
         print("Test button")
@@ -294,22 +301,47 @@ class HistoryFrame(customtkinter.CTkFrame):
 
         self.parent = parent
 
-        self.placeholder_info = customtkinter.CTkLabel(
+        self.story_list_title = customtkinter.CTkLabel(
             master = self,
-            text = "History",
-            text_font = ("times 35", 48),
-            height = 1260,
-            corner_radius = 6,
-            fg_color = ("white", "orange"),
-            justify = tkinter.LEFT
+            text = "Currently Downloaded Stories",
+            fg_color = ("purple")
         )
-        self.placeholder_info.pack(
-            fill = 'both',
-            expand = True
+        self.story_list_title.grid(
+            row = 0,
+            column = 0,
+            columnspan = 2,
+            pady = 20, padx = 20,
+            sticky = "we"
         )
 
+        self.loaded_stories = json.load(open(os.path.join(self.master.master.rootdir, 'Data/previousStories/index.json')))
+        self.stories_list = Listbox(
+            master = self,
+            bg = "purple",
+            font = ("times 35", 12),
+            selectmode = SINGLE
+        )
+        self.stories_list.grid(
+            row = 1,
+            pady = 10,
+            padx = 20, 
+            sticky = "nsew",
+            columnspan = 2
+        )
+        self.stories_list.config(
+            height=self.stories_list.size()
+        )
+        for story_title in self.loaded_stories:
+            self.stories_list.insert(self.stories_list.size(),story_title)
+        
+
     def update_frame(self):
-        pass
+        # Reload json
+        self.loaded_stories = json.load(open(os.path.join(self.master.master.rootdir, 'Data/previousStories/index.json')))
+        # Reload listen af historier
+        self.stories_list.delete(0, END)
+        for story_title in self.loaded_stories:
+            self.stories_list.insert(self.stories_list.size(),story_title)
 
 class SettingsFrame(customtkinter.CTkFrame):
     def __init__(self, parent):
