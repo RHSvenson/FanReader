@@ -333,6 +333,34 @@ class HistoryFrame(customtkinter.CTkFrame):
         )
         for story_title in self.loaded_stories:
             self.stories_list.insert(self.stories_list.size(),story_title)
+
+        self.story_select_button = customtkinter.CTkButton(
+            master = self,
+            text = "Change To Selected Story",
+            fg_color = ("purple"),
+            command = lambda: self.change_current_story(self.stories_list.curselection())
+        )
+        self.story_select_button.grid(
+            row = 2, column = 1,
+            padx = 20, pady = 20,
+            sticky = "we"
+        )
+
+    # Metode brugt når vælger en anden historie fra listen.
+    # Denne skubber en ny værdi til master.master.current_story_title
+    # Og laver den nødvendige ændring til kapitel-listen også
+    def change_current_story(self, new_story):
+        print(new_story)
+        # Sæt titel værdien til det rigtige
+        self.master.master.current_story_title.set(self.stories_list.get(new_story[0]))
+
+        # Tøm kapitellisten og fyld den op med de rigtige værdier fra JSON.
+        self.master.chapters = {}
+        self.json_dict = json.load(open(os.path.join(self.master.master.rootdir, 'Data/previousStories/index.json')))
+        self.master.chapters = self.json_dict[self.master.master.current_story_title.get()]
+        self.update_frame()
+        
+
         
 
     def update_frame(self):
