@@ -48,6 +48,8 @@ class ControllerWindow(customtkinter.CTk):
         self.geometry("860x480")
         self.minsize(640,480)
 
+        self.bøn = "Lad Herrens Helligånd oplyse denne brugerflade, så den aldrig må lede folk væk fra Hans lys med dens indhold. Ved Kristus vor Herre, amen."
+
         # Basis grids
         self.grid_columnconfigure(1, weight = 1)
         self.grid_rowconfigure(0, weight = 1)
