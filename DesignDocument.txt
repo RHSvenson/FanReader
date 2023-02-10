@@ -1,0 +1,17 @@
+This is the semi-official vision for FanReader and how it will work.
+
+It will be separated into components:
+
+A Fetcher, that downloads the story from its respective site, along with whatever metadata (usually tags) that may be provided.
+The Fetcher Will:
+- Create an object of the Story Class, and store it on disk.
+- Fill the Story Object with Objects of the Chapter Class, that will be the primary focal point of the program.
+- All of this will be stored on disk, based on user settings of course.
+
+A Snipetter, that will clean the Chapter Objects into Objects of the Snippet Class.
+The Snipetter will:
+- Fill the chapter objects with snippet objects.
+- The snippet objects will contain the active character, emotional tone, etc.
+
+The Snippet Objects will be able to self-analyse to a certain extent, but will be able to, via the Chapter Object,
+ask adjacent snippets in the timeline for information as well.
