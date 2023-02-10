@@ -2,7 +2,7 @@
 from xml.dom.minidom import CharacterData
 
 
-def director():
+def director(chapterPath):
     from genericpath import exists
     import re
     from unicodedata import name
@@ -13,7 +13,7 @@ def director():
     bøn = "I Faderen og Sønnen, og Helligåndens navn, Amen. Herre, den menneskelige intelligens kan aldrig sammenlignes med din, og endnu mindre kan de ringe efterligninger af intelligens vi producerer på vor maskiner. Alligevel beder jeg dig om at velsigne os med din skabelseskløgt, så vi kan producere et godt produkt til din ære. Ved Kristus vor Herre, amen."
 
     # Derefter skal vi have vores liste af snippets
-    snippetDictionary = snippeter("examplestory.txt","")
+    snippetDictionary = snippeter(chapterPath,"")
 
     # Kontroller historiens perspektiv ud fra første 20 snippets
     isFirstPerson = False

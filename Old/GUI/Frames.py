@@ -15,6 +15,8 @@ import re
 import json
 import string
 
+
+
 class FetcherFrame(customtkinter.CTkFrame):
     
     def __init__(self, parent):
@@ -266,6 +268,25 @@ class GeneratorFrame(customtkinter.CTkFrame):
         )
         for chapter in self.master.chapters:
             self.chapter_list.insert(self.chapter_list.size(),chapter)
+
+        self.generate_button = customtkinter.CTkButton(
+            master = self,
+            text = "Generate",
+            text_font = ("times 35", 12),
+            fg_color = ("purple"),
+            command = lambda: self.fetch_chapters(parent)
+        )
+        self.generate_button.grid(
+            row = 0,
+            column = 1,
+            pady = 10, padx = 20,
+            sticky = "we"
+        )
+
+        #def call_director(self, parent, chapter):
+            # Kalder direktor, og danner en behandlet fil som så vil kunne tilgås fra Reader
+            
+            
         
 
         # TODO:

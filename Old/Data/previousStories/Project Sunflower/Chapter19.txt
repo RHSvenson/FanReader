@@ -1,0 +1,336 @@
+//------------------------------//
+// Chapter 18: Fallout 
+// Story: Project: Sunflower 
+// by Hoopy McGee 
+//------------------------------//
+
+  Dr. Maggie Henson trailed along behind the human vortex of pure anger that was Dr. Thomas Edwards. The two of them marched through the Harmonics lab, ignoring the startled stares of the scientists and engineers working there, and went straight to the a door on the second level. 
+
+A plaque on the door announced that, on the other side, you could find the "Office of Doctor Paul Velchiek". 
+
+Tom slammed the door open with considerably more force than was necessary, startling both Paul and Major Morris, who were sitting at a table and discussing something, most likely about the project. 
+
+"You'd better have a damned good explanation for this, Paul!" Tom said, waving his tablet around. 
+
+Paul scowled, and resumed sitting after having bolted half out of his chair at the unexpected intrusion. 
+
+"If the internet is down again, you should talk to IT. And, if you ever burst in like this again-"
+
+"Shut it," Tom growled, marching forward. Even though Paul towered over the skinny scientist, the larger man pulled back defensively. Maggie mentally applauded her firebrand colleague. She was extremely angry, herself, but nobody could do "furious" as well as Doctor Thomas Edwards. You had to hand it to the man, he'd turned it into an art form. 
+
+Tom slammed his tablet down on the table between them. 
+
+"There," he said. "Explain that code. What is that doing in my implants?" 
+
+"I'm not a programmer, Tom," Paul said, pushing the tablet away. "Perhaps we should discuss this after you've calmed down?"
+
+"We're discussing this now." Tom snapped back. "Which one of my team did you coerce into supplying you with this code?" 
+
+"I think we should all just settle down," Major Morris said. Maggie liked the young man, and dearly hoped he'd be on their side. Only in his thirties, he was handsome and reserved, and, though not a scientist himself, had proven himself to be no slouch when it came to critical thinking and scientific understanding. 
+
+If only I were twenty years younger, she sighed, then put the thought out of her mind to address him. 
+
+"I think you'll be interested in what we've discovered, Major,"  Maggie said
+
+"Oh?"
+
+"It involves an abuse of the Auto-Override function," she continued. 
+
+"I see. Please, explain," the major said, taking out his tablet and tapping the screen briefly. He lay the tablet on the table in front of him, folded his hands, and looked at the pair of them expectantly. 
+
+Tom snatched up his own tablet, typed a few commands, and then handed it to the major. 
+
+"On the left, you'll see my original code. Not that I expect you to understand it," he said, and Maggie flinched. The man had no tact. "But I assure you, it works exactly as discussed in committee. Usable only if Ms. Olsen was passed out or incapacitated, and she could easily veto the override if she woke up. 
+
+"On the right, you'll see the bloated, Frankensteinian mess that some fool hacked together and uploaded without my consent or knowledge. Instead of being an emergency retrieval function, it became a remote control. Ms. Olsen would no longer be able to override the override, and it could be set to perform certain actions under specific sets of criteria." 
+
+Major Morris looked... displeased, Maggie was happy to see. 
+
+"What sort of criteria?" 
+
+"Any criteria, essentially," Maggie said. "Such as, oh, let's say she wanted to tell her friends that she was from another dimension, it could shut her down completely, leaving her in a coma." 
+
+She looked at Paul, who was scowling at her. 
+
+"You may head up the project, Paul," she told him, "But these are my labs. My teams. And, after you activated it yesterday, several of my team came forward to me with ethical complaints. I reviewed, and copied, the security tapes here." 
+
+She took a data stick out of her pocket and waved it at him. 
+
+"There's also the small fact that you've been administering mood altering drugs to her pretty much the entire time she seemed to assert any independence from you," she continued. "There were supposed to be anti-anxiety meds and anti-depressants, which were to be used only in the event of an absolute emotional breakdown if immediate retrieval wasn't an option. In addition, there were supposed to be a variety of medicines: painkillers, antibiotics and the like. But according to what I've found, you've changed her medical loadout for various mood-altering compounds." 
+
+"We couldn't risk her blowing the mission due to a momentary weakness," Paul asserted firmly. "If I hadn't done that, she would have told the ponies all about us a week ago." 
+
+"It's not right, Paul," Tom said, "And I won't stand for it." 
+
+"You won't have a choice," Paul said. "I'm sorry, but you're both fired." 
+
+"You can't do that!" Tom protested, shocked. "The project..!"
+
+"The project," Paul interrupted smoothly, "is far enough along to survive the loss of a couple of its senior scientists. And I can't have you questioning my orders. Major, if you'd be so kind as to have these two placed under arrest and confined to quarters?" 
+
+"Sorry, Doctor," Major Morris said. "I'm here in an advisory capacity. Not only am I not in your direct chain of command, I don't have the authority to arrest any senior members of the Harmonics staff. However, I do know someone who can."
+
+He picked up his tablet and addressed it, "Did you get all that, sir?" 
+
+"I did," a voice said from the tablet. "Let me address Doctor Velchiek, please." 
+
+Major Morris held out his tablet so that the rest of the room could see the screen. An elderly man, dressed in a suit and tie, stared back at them through a webcam. Maggie recognized him as Robert Thomson, Chairman of the International Committee on Human Survival, which ran all official efforts opposing the Black Tide. 
+
+"Hi, Paul," the man on the screen said. 
+
+"Bob," Paul replied. "It's always a pleasure." 
+
+"Typically, yes. But perhaps not so much today. Did I hear that correctly, Paul? Did you authorize the change of programming on the override to prevent Erin from partaking in an action you objected to?" 
+
+"That's correct, yes. But I considered-"
+
+"A simple 'yes' or 'no' will suffice," the chairman replied. Paul frowned at the interruption. "And, you've been manipulating her moods with implanted drugs?" 
+
+"Well, yes. She had to be kept on-task. All that 'worrying about her friends' that she was doing was a distraction and a danger. Not to mention that she was showing an alarming resistance to following orders." 
+
+"I see. And you thought your actions were appropriate?" 
+
+"Yes, of course. It was for the greater good. Why am I the one being questioned, here? Everything I did, I did to ensure humanity's survival." 
+
+"A goal I happen to share, Paul. However, I question your methods and I question your ethics." 
+
+Maggie smiled with relief. It looked like things were going to go their way, after all. 
+
+How they were going to construct the pony body had been discussed at length long before Erin had even volunteered. All sorts of scenarios were considered before determining the final configuration. The Auto-Override itself was supposed to be there only to make sure they could retrieve a badly injured or unconscious explorer. The drug injectors were meant to only be used in the case of a psychological or medical emergency. But Paul, according to the records, had been abusing the drugs any time Erin had shown a contrary attitude, and had primed the override on no less than three separate occasions, now. 
+
+She had needed some sort of evidence, though. And, working with Tom, they'd found it. Not only in the communications logs and the security tapes of each session during an open window, but also in the very code that had been pushed out to Erin's pony body after she'd been deployed. 
+
+They had bundled that information and sent it to the rest of the Harmonics Committee members and the entirety of the International Committee on Human Survival about an hour before the confrontation. However, she had been afraid that they would have no backup, that everyone would agree that these steps were necessary. She'd prepared herself to be arrested the moment they confronted Paul about the ethical violations. 
+
+"When it comes to the greater good," Robert continued, "there comes a point when you cross a line, and you have to consider whether the "greater good" is really worth it. Erin is a volunteer, and a very brave young lady. If she was determined to take a course of action that would undermine our diplomatic efforts, the correct course of action would have been to pull her out of the field. Under no circumstances could I, as a retired officer of the United States Army or as a citizen of this great nation condone what is, in essence, a form of slavery. She deserves our respect and support, not our manipulation. Major?"
+
+"Sir?" 
+
+"Outside of the office door you will find two MPs. Please inform them that Doctor Velchiek is to be confined to quarters until further notice."
+
+"WHAT?!" Paul exploded. "You can't do this!" 
+
+"I just did," Bob replied wearily. "Doctor Velchiek, you are relieved. Doctor Hanson, you are now in charge." 
+
+"Yes, sir," Maggie said, stunned by the turn of events. Major Morris let the MPs in, who proceeded to escort the apoplectic Paul Velchiek out of his office. 
+
+"You can't do this! The project needs me!" 
+
+"If the project can survive the loss of two senior scientists, Doctor Velchiek," said Senator Thomson from the tablet screen.  "Then I'm certain it will not have a problem with the loss of just one." 
+
+The door closed. Maggie could hear Paul's voice fading in the distance as he was escorted out of the labs. On the tablet screen, which was currently resting on the table, she heard the chairman sigh. 
+
+"That man's been my friend for years. I had no idea he would do something like this." 
+
+"He's not a bad man," Maggie said. "He just... got a little overzealous, I think. Maybe the stress got to him." 
+
+"These are tough times for everyone," Thomson agreed. "Well, it's something we'll have to work out later, I'm afraid. For now, I have a considerable amount of paperwork to complete. Enjoy your new office, Doctor Hanson." 
+
+"Maggie, please," she prompted him. 
+
+"Maggie, then. Have a good day." 
+
+With that, the screen went dark as the call was disconnected. Still feeling rocked by the day's events, Maggie stared at Tom, who frowned back at her. 
+
+"Why didn't I get to be in charge?" he asked. 
+
+
+~~*~~
+
+
+
+The seven of them, which included Spike, were in a large private lounge in Canterlot Castle. After Sunflower had passed out, Celestia had quickly examined her and determined that there were no obvious physical reasons for her unconsciousness. Concerned for the mare's well-being, Celestia had issued a few last-minute instructions and then teleported both herself and Sunflower back to Canterlot. 
+
+Professor Glimmer, along with the now-awake but still slightly woozy Thunderflash and Vortex, had all climbed into the second carriage to make their way back to Ponyville and continue their mission investigating the ripples. The rest of them had climbed into the first carriage and, with Fluttershy and Rainbow Dash flying, had made their way to Canterlot, stopping occasionally on the way for the pegasi to rest. 
+
+They had arrived a short while ago and were informed that Sunflower was still unconscious, a fact that baffled the Royal Doctors who had examined her. With her friends eager for explanations, Twilight had suggested that they find a private area to discuss things. 
+
+"Okay, okay," Rainbow Dash said, waving a hoof. "Forget about the ripples thing. I get that Sunflower is some kind of an alien. What is she doing here, though?" 
+
+Rainbow Dash was hovering near the ceiling with her forelegs crossed over her chest and a scowl on her face. Pinkie Pie was curled up in a ball on a nearby couch, with her back facing the rest of the group. Twilight would have assumed she was asleep if she hadn't seen her pink ears twitching every once in a while as she talked. 
+
+Fluttershy was sitting placidly next to Rarity, who looked both intrigued and overwhelmed by the information. Applejack was sitting on the floor, frowning down at her hooves. Spike was busily serving drinks while wearing an adorable little apron he'd found somewhere. 
+
+"I don't know," Twilight replied. "She spent quite a lot of time at the library, learning new things..." 
+
+"So she was a spy," Rainbow interrupted angrily. 
+
+"I didn't say that!" Twilight said, annoyed. "If you suddenly found yourself in a strange world full of ponies who were completely different than you, wouldn't you try to learn all you could about them? That doesn't make her a spy!" 
+
+"But she could be," Rainbow countered acidly. "Right?" 
+
+"She could be," Twilight admitted reluctantly. Pinkie sighed heavily at that, but otherwise didn't move.
+
+"I trusted her, dangit. I liked her. And now she's some sort of spy for an alien world!" Rainbow said, getting worked up. 
+
+"Like I said, we don't know that. We don't know anything, and we won't until she wakes up." 
+
+"And when will that be?"
+
+"I don't know, Rainbow," Twilight said, sadly. Initial examinations of Sunflower indicated that she was perfectly healthy. There was no reason for her to be in a coma, as far as anypony could tell. A specialist was examining her currently, and they might know more soon. 
+
+"I still think she's nice," Fluttershy said, softly. 
+
+"What?!" Rainbow was incredulous. "How can you say that?" 
+
+"She always took the time to talk to me and ask after my animals when she came to visit," Fluttershy said. 
+
+"She was probably gathering information to send back to her alien masters." 
+
+"Well, what about making my medical supplies a priority? Two times in the last week she visited me after work hours just to drop off a package that had arrived, that wasn't due to be delivered until the next day. She didn't have to do that," Fluttershy asserted. 
+
+"Whatever," Rainbow said, clearly not willing to concede the point. Twilight could understand that. She, too, had been very upset at discovering that Sunflower was from another world. 
+
+"What do you think, AJ?" Rainbow asked, challengingly. 
+
+"Well, I'm mighty hurt. I trusted her too," the farm pony replied. "But I also reckon' that Sunflower was a mighty nice mare, always smilin' at everypony, willin' to drop what she was doin' to lend a hoof if needed. She bought us presents, too. She didn't have to do that." 
+
+"You mean 'bribes'," Rainbow Dash said. 
+
+"I mean presents, Rainbow," Applejack responded, annoyed. "She didn't ask for nothin', she just wanted to give us presents 'cuz she liked us." 
+
+Rainbow Dash grimaced and rolled her eyes, while AJ continued. 
+
+"There's also the small matter of how she tried to fight off a chimera to save Apple Bloom, Scootaloo and Sweetie Belle, if'n you recall. I don't reckon' I know if I can ever forgive her for lyin' to me, but I reckon I owe her a chance to explain why she did." 
+
+"She did try to save the girls' lives at great risk to her own," Rarity said, thoughtfully. "Anypony that does that... well, they have to have some good in them, don't they?" 
+
+"Fine," Rainbow sulked. "I'll give her a chance to explain. Just... don't expect me to trust her ever again." 
+
+"Nopony can ask for anything else, Rainbow," Applejack replied, standing up. "Well, if'n y'all will excuse me, it's been a mightily long day, it's late, and I could use some sleep. G'night, y'all." 
+
+With that, Applejack left, head low. Rainbow Dash left without saying another word, flying out through a nearby window and up to her room. Rarity and Fluttershy, both with a concerned glance towards the unresponsive Pinkie Pie, excused themselves as well. 
+
+That left Twilight Sparkle alone with the curled-up pink pony. 
+
+"Pinkie?" she asked, "Are you okay?" 
+
+"No," said Pinkie, her voice sounding odd without its usual bubbliness. 
+
+"You're upset about this too," Twilight said. It wasn't a question, it was a statement. 
+
+"Yes." 
+
+"I'm here to talk about it if you want, Pinkie," Twilight said, laying a hoof on her friend's shoulder. Pinkie's head popped up, and Twilight heard her sniffle. Still facing away from her, Pinkie reached back with a leg, hooking Twilight's leg with her own and bringing it around in a hug. 
+
+"I don't like it when my friends lie to me," Pinkie said quietly, hugging Twilight's foreleg tightly. 
+
+"I know," Twilight said, stroking Pinkie's mane with her free hoof. "I know." 
+
+
+~~*~~
+
+
+The specialist had found nothing wrong, and had since been dismissed. In desperation, Celestia had called her sister in to look at the comatose mare. 
+
+"There are devices planted through her body," Luna said after examining her briefly.  
+
+Celestia blinked at her sister in surprise, then glanced back at the unconscious form of the mare Sunflower. She extended her senses and found what Luna had been talking about. 
+
+"What are those things?" she asked, vaguely horrified. 
+
+"I cannot say," Luna replied. "I have never seen anything of the sort in my entire life. Nor have you, I would guess." 
+
+"No, never." 
+
+She wasn't surprised that her sister had discovered the devices implanted in the mare before she had herself. Luna's magic and mind had always been the more subtle of the two. 
+
+"Do you believe they could be safely removed?" she asked. 
+
+"I don't see why not, for most of them. They don't impact any vital areas. However this one," Luna said, highlighting an area at the base of Sunflower's skull with her magic "this one goes directly into her spine as well as her brain. If I were to guess, I would say that this is the one that makes her sleep." 
+
+"It would be... risky, to remove it, sister." Celestia said. 
+
+"Indeed. But would it not be riskier to leave it in?" 
+
+"How so?" 
+
+"The one you called 'Malachite', I am guessing that was what he was referring to when he said he could stop her heart. As you can see, it controls all autonomous and voluntary muscles in the body. It is likely that, whoever sent Sunflower here, they implanted this device in order to control her." 
+
+Luna didn't have to say any more. Celestia considered the implications of that. A creature that gained control over that device implanted in the mare's head would have full control over every action that she could possibly do. Including hurting herself or other ponies. 
+
+Not to mention, her masters may decide to terminate Sunflower the moment they discovered that she'd been captured. Forgetting even the valuable information that they could attain from her, Celestia wasn't about to let her be murdered just to keep her quiet. 
+
+"You are right, Luna. We should remove it immediately. Do you feel up to it?" 
+
+"Yes," she replied simply. 
+
+"Very well, then. We shall begin at once." 
+
+
+~~*~~
+
+
+Erin groaned, opening her eyes. She felt like she'd been pulled backwards through a meat grinder. Her whole body throbbed, and her head felt like it was splitting open. She moved her head slightly, and her stomach roiled with nausea. 
+
+"Ah, you're awake," a voice said. 
+
+Erin blinked, then cautiously turned her head. There was an unfamiliar earth pony in a nurses' uniform standing in the corner of the room. Erin regarded her groggily. 
+
+"I'll just notify the Princesses. You try to relax, all right?" 
+
+The mare slipped out the door, which closed with a soft click. 
+
+Erin let her aching head drop back into the pillow, and regarded her surroundings with a certain amount of wariness. 
+
+The room she was in was huge. Almost the entire Guest House, both floors, could fit in here. And that wasn't counting the door that apparently led to a private bathroom. The high, sky-blue ceiling was decorated with clouds and flying birds. The walls themselves were a pale blue, almost white in color. The floor was an odd blue and red checkerboard pattern, with several large rugs over the top of it. 
+
+The furnishings spoke of simple elegance, delicately carved dressers and wardrobes, a writing desk and stool, all in white-painted wood. Several framed paintings were hung on the walls, in frames of dark oak with gold trim. 
+
+At a guess, Erin thought, I am in the castle.
+
+She glanced down at her own body, which was covered with a sheet. Finding very little strength in her limbs, she began pulling the sheet off. What she saw confused her. 
+
+Her entire body, or at least most of it, was covered in wrapped bandages. She reached up and felt at her head. Another bandage. But she distinctly remembered that the light that had driven Malachite out of her had also healed her injuries. Her face, swollen from running head-first into a tree when Malachite was still first learning to control her, had stopped hurting and returned to its normal dimensions. The stings and scrapes along her sides and flanks had closed up. She'd felt the unusual sensation of her hooves, some of which had cracked open and all of which had at least one rock lodged in them, joining back together and expelling any foreign matter. 
+
+So, why was she covered in bandages? And why did she ache so badly? 
+
+The door opened shortly after that, and Princess Celestia walked in.
+
+"Good evening, Sunflower. I'm glad to see that you're awake," the princess said, sounding sincere. 
+
+"Thank you, Princess," Erin replied, looking down at her sheets. "And... thank you for saving me." 
+
+"How do you feel?" Celestia asked. 
+
+"Like I've been taken apart and put back together," Erin said. 
+
+"This isn't too far from the truth, I'm afraid," Celestia replied. Erin glanced up, confused. 
+
+"We found a number of devices all over your body. One in particular was attached to your brain and nervous system, and connected thusly to all of your muscles, including your heart. We believed it was that device that was forcing you to stay unconscious, and we also considered it to be a risk to your life. So, we removed it." 
+
+"You removed my implants?" Erin said, surprised. 
+
+"Just the one. We weren't certain what it was for, but we knew that it could be used to control you in exactly the same way Malachite had." 
+
+Erin flinched back at the reminder, glancing away from the beautiful princess. 
+
+"The device had... threads, I imagine you could say, running through your entire body. It took some time to remove them all, even with magic. My sister, Luna, did most of the work. She is very curious about the devices, and may stop by once you're recovered to ask you about them." 
+
+Erin nodded, unable to meet Celestia's gaze. 
+
+"You are a guest here at the castle," Celestia continued. "I'm not certain what brings you to our world, but the picture I received from talking to your Ponyville friends makes me believe that you don't intend us any harm. For now, I would like you to rest and recover. There will be time for explanations later." 
+
+With that, Celestia began walking away. A thought occurred to Erin. 
+
+"Princess?" 
+
+Celestia stopped, looking back at her. "Yes?" 
+
+"You said you talked to my Ponyville friends. Does that include Meadowlark from the Guest House?" 
+
+"No," the princess replied. "I spoke to Twilight Sparkle and her friends. Is Meadowlark a friend as well?" 
+
+"Yes, and her filly Marigold" Erin replied. "And, they saw me... become possessed. Could somepony let them know that I'm okay? I don't want them to worry." 
+
+Celestia smiled gently. 
+
+"I will do that. Thank you for considering their feelings, Sunflower." 
+
+"Princess? One last thing..." 
+
+"Yes?" 
+
+She took a deep, shuddering breath and expelled it, bracing herself. 
+
+"Please, call me Erin." 
