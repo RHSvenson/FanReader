@@ -5,7 +5,7 @@ def tagFetcher(soup):
     import re
     from bs4 import BeautifulSoup
 
-    allTags = soup.find_all("a", class_="tag-character")
+    allTags = soup.article.story_container.find_all("a", class_="tag-character")
     relevantTags = []
     
     for tag in allTags:
